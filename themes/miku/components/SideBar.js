@@ -9,18 +9,27 @@ import WWAds from '@/components/WWAds'
  * @param {*} props
  * @returns
  */
-export default function SideBar (props) {
+export default function SideBar(props) {
   const { notice } = props
-  return (<>
+  return (
+    <div className='space-y-6'>
+      <Catalog {...props} />
 
-            <Catalog {...props} />
+      <div className='glass-card p-4 rounded-2xl bg-white/70 dark:bg-black/60 backdrop-blur-md border border-white/30 dark:border-white/10'>
+        <Live2D />
+      </div>
 
-            <Live2D />
+      <div className='glass-card p-4 rounded-2xl bg-white/70 dark:bg-black/60 backdrop-blur-md border border-white/30 dark:border-white/10'>
+        <Announcement post={notice} />
+      </div>
 
-            <Announcement post={notice} />
+      <div className='glass-card p-4 rounded-2xl bg-white/70 dark:bg-black/60 backdrop-blur-md border border-white/30 dark:border-white/10'>
+        <AdSlot />
+      </div>
 
-            <AdSlot/>
-            <WWAds orientation="vertical" className="w-full" />
-
-    </>)
+      <div className='glass-card p-4 rounded-2xl bg-white/70 dark:bg-black/60 backdrop-blur-md border border-white/30 dark:border-white/10'>
+        <WWAds orientation="vertical" className="w-full" />
+      </div>
+    </div>
+  )
 }
