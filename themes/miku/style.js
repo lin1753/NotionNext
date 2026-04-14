@@ -6,39 +6,51 @@ const Style = () => {
   return <style jsx global>{`
     /* MD3 Elevation System */
     .glass-card {
-      background: rgba(255, 255, 255, 0.98);
+      background: rgba(255, 255, 255, 0.75);
+      backdrop-filter: saturate(180%) blur(20px);
+      -webkit-backdrop-filter: saturate(180%) blur(20px);
       border-radius: 16px;
-      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03), 0 2px 4px rgba(0, 0, 0, 0.02), 0 4px 8px rgba(0, 0, 0, 0.02);
-      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
     .glass-card:hover {
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04), 0 4px 8px rgba(0, 0, 0, 0.03), 0 8px 16px rgba(0, 0, 0, 0.03);
-      transform: translateY(-1px);
+      box-shadow: 0 8px 32px rgba(0, 194, 209, 0.15), 0 4px 8px rgba(0, 0, 0, 0.05);
+      transform: translateY(-2px);
     }
 
     .dark .glass-card {
-      background: rgba(40, 40, 40, 0.98);
+      background: rgba(28, 28, 30, 0.75);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.4), 0 1px 0 rgba(255, 255, 255, 0.05) inset;
     }
 
     /* Elevated Card */
     .elevated-card {
-      background: rgba(255, 255, 255, 0.98);
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: saturate(150%) blur(30px);
+      -webkit-backdrop-filter: saturate(150%) blur(30px);
       border-radius: 20px;
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05), 0 4px 12px rgba(0, 194, 209, 0.08), 0 8px 24px rgba(0, 0, 0, 0.04);
-      border: 1px solid rgba(0, 194, 209, 0.06);
-      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 8px 32px rgba(0, 194, 209, 0.1), 0 4px 12px rgba(0, 0, 0, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.5);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
     .elevated-card:hover {
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06), 0 8px 20px rgba(0, 194, 209, 0.12), 0 16px 32px rgba(0, 0, 0, 0.06);
+      box-shadow: 0 12px 48px rgba(0, 194, 209, 0.2), 0 8px 16px rgba(0, 0, 0, 0.06);
       transform: translateY(-2px);
+    }
+
+    .dark .elevated-card {
+      background: rgba(40, 40, 40, 0.85);
+      border: 1px solid rgba(255, 255, 255, 0.15);
     }
 
     /* FAB Button */
     .fab-button {
-      width: 44px;
-      height: 44px;
+      width: 48px;
+      height: 48px;
       border-radius: 50%;
       background: linear-gradient(135deg, #00C2D1, #0A84FF);
       color: white;
@@ -47,12 +59,12 @@ const Style = () => {
       display: flex;
       align-items: center;
       justify-content: center;
-      box-shadow: 0 2px 4px rgba(0, 194, 209, 0.3), 0 4px 8px rgba(0, 0, 0, 0.15);
-      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 4px 15px rgba(0, 194, 209, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.2) inset;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
     .fab-button:hover {
-      box-shadow: 0 4px 8px rgba(0, 194, 209, 0.4), 0 8px 16px rgba(0, 0, 0, 0.2);
+      box-shadow: 0 8px 25px rgba(0, 194, 209, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.3) inset;
       transform: scale(1.05) translateY(-2px);
     }
 
@@ -91,20 +103,21 @@ const Style = () => {
     body {
       margin: 0;
       padding: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
       line-height: 1.6;
       color: #333333;
     }
 
-    /* Background */
+    /* Background - Full screen wallpaper */
     body::before {
       content: '';
       position: fixed;
       top: 0;
       left: 0;
-      width: 100%;
-      height: 100%;
-      background: url('/miku.jpg') no-repeat center center/cover;
+      width: 100vw;
+      height: 100vh;
+      background: url('/miku.jpg') no-repeat center center;
+      background-size: cover;
       z-index: -2;
     }
 
@@ -113,14 +126,15 @@ const Style = () => {
       position: fixed;
       top: 0;
       left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(255, 255, 255, 0.1);
+      width: 100vw;
+      height: 100vh;
+      background: rgba(255, 255, 255, 0.15);
       z-index: -1;
+      pointer-events: none;
     }
 
     .dark body::after {
-      background: rgba(0, 0, 0, 0.4);
+      background: rgba(0, 0, 0, 0.5);
     }
 
     #theme-miku {
@@ -134,22 +148,25 @@ const Style = () => {
 
     /* Article cards */
     #theme-miku article.elevated-card {
-      background: rgba(255, 255, 255, 0.98);
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: saturate(150%) blur(30px);
+      -webkit-backdrop-filter: saturate(150%) blur(30px);
       border-radius: 20px;
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05), 0 4px 12px rgba(0, 194, 209, 0.08), 0 8px 24px rgba(0, 0, 0, 0.04);
-      border: 1px solid rgba(0, 194, 209, 0.06);
+      box-shadow: 0 8px 32px rgba(0, 194, 209, 0.1), 0 4px 12px rgba(0, 0, 0, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.5);
       padding: 30px;
       margin-bottom: 30px;
-      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
     #theme-miku article.elevated-card:hover {
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06), 0 8px 20px rgba(0, 194, 209, 0.12), 0 16px 32px rgba(0, 0, 0, 0.06);
+      box-shadow: 0 12px 48px rgba(0, 194, 209, 0.2), 0 8px 16px rgba(0, 0, 0, 0.06);
       transform: translateY(-2px);
     }
 
     .dark #theme-miku article.elevated-card {
-      background: rgba(40, 40, 40, 0.98);
+      background: rgba(40, 40, 40, 0.85);
+      border: 1px solid rgba(255, 255, 255, 0.15);
     }
 
     /* Navigation */
@@ -161,18 +178,23 @@ const Style = () => {
       padding: 8px 16px;
       border-radius: 20px;
       transition: all 0.3s ease;
-      background: rgba(255, 255, 255, 0.9);
+      background: rgba(255, 255, 255, 0.75);
+      backdrop-filter: saturate(180%) blur(10px);
+      -webkit-backdrop-filter: saturate(180%) blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.3);
     }
 
     #theme-miku .menu-link:hover {
-      background: rgba(255, 255, 255, 1);
+      background: rgba(255, 255, 255, 0.95);
       color: #00C2D1;
       transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0, 194, 209, 0.2);
     }
 
     .dark #theme-miku .menu-link {
-      background: rgba(50, 50, 50, 0.9);
+      background: rgba(50, 50, 50, 0.75);
       color: #ffffff;
+      border: 1px solid rgba(255, 255, 255, 0.1);
     }
 
     /* Buttons */
@@ -187,13 +209,14 @@ const Style = () => {
       font-weight: 600;
       cursor: pointer;
       transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(0, 194, 209, 0.3);
     }
 
     #theme-miku button:hover,
     #theme-miku .btn:hover {
       background: linear-gradient(135deg, #00A8B5, #0066CC);
       transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(0, 194, 209, 0.3);
+      box-shadow: 0 6px 20px rgba(0, 194, 209, 0.4);
     }
 
     /* Tags */
@@ -208,7 +231,7 @@ const Style = () => {
 
     /* Scrollbar */
     ::-webkit-scrollbar { width: 8px; }
-    ::-webkit-scrollbar-track { background: #f1f1f1; }
+    ::-webkit-scrollbar-track { background: rgba(241, 241, 241, 0.5); }
     ::-webkit-scrollbar-thumb {
       background: #00C2D1;
       border-radius: 4px;
@@ -225,13 +248,13 @@ const Style = () => {
       display: flex;
       align-items: center;
       justify-content: center;
-      box-shadow: 0 4px 15px rgba(0, 194, 209, 0.3);
+      box-shadow: 0 4px 15px rgba(0, 194, 209, 0.4);
       transition: all 0.3s ease;
     }
 
     #theme-miku .jump-to-top:hover {
       transform: translateY(-3px);
-      box-shadow: 0 8px 25px rgba(0, 194, 209, 0.4);
+      box-shadow: 0 8px 25px rgba(0, 194, 209, 0.5);
     }
 
     /* Selection */
@@ -258,34 +281,6 @@ const Style = () => {
 
     @media (max-width: 768px) {
       #theme-miku article { padding: 20px; }
-    }
-
-    /* Cursor trail */
-    .cursor-trail {
-      position: fixed;
-      pointer-events: none;
-      z-index: 9999;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      overflow: visible;
-    }
-
-    .cursor-note {
-      position: fixed;
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      animation: note-float 1s ease-out forwards;
-      box-shadow: 0 0 10px rgba(0, 194, 209, 0.8), 0 0 20px rgba(0, 194, 209, 0.4);
-      pointer-events: none;
-    }
-
-    @keyframes note-float {
-      0% { opacity: 1; transform: translateY(0) scale(1); }
-      50% { opacity: 0.8; transform: translateY(-20px) scale(1.2); }
-      100% { opacity: 0; transform: translateY(-40px) scale(0.3); }
     }
   `}</style>
 }
