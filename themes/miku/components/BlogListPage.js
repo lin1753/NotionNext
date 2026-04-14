@@ -48,25 +48,22 @@ export default function BlogListPage(props) {
         ))}
       </div>
 
-      <div className='flex justify-between text-xs mt-1'>
-        <SmartLink
-          href={{
-            pathname:
-              currentPage - 1 === 1
-                ? `${pagePrefix}/`
-                : `${pagePrefix}/page/${currentPage - 1}`,
-            query: router.query.s ? { s: router.query.s } : {}
-          }}
-          className={`${showPrev ? 'text-blue-600 border-b border-blue-400 visible ' : ' invisible bg-gray pointer-events-none '} no-underline pb-1 px-3`}>
-          NEWER POSTS <i className='fa-solid fa-arrow-left'></i>
+      <div className='flex justify-between text-xs mt-4 pt-4'>
+        <SmartLink href={{
+          pathname: currentPage - 1 === 1
+            ? `${pagePrefix}/`
+            : `${pagePrefix}/page/${currentPage - 1}`,
+          query: router.query.s ? { s: router.query.s } : {}
+        }} className={`${showPrev ? 'text-cyan-600 dark:text-cyan-400 border border-cyan-500/30 dark:border-cyan-400/30 bg-white/70 dark:bg-black/60 backdrop-blur-sm visible hover:bg-cyan-500 hover:text-white transition-all duration-300' : ' invisible bg-gray pointer-events-none '} no-underline py-2 px-4 rounded-full flex items-center gap-2`}>
+          <i className='fa-solid fa-arrow-left'></i>
+          NEWER POSTS
         </SmartLink>
-        <SmartLink
-          href={{
-            pathname: `${pagePrefix}/page/${currentPage + 1}`,
-            query: router.query.s ? { s: router.query.s } : {}
-          }}
-          className={`${showNext ? 'text-blue-600 border-b border-blue-400 visible' : ' invisible bg-gray pointer-events-none '} no-underline pb-1 px-3`}>
-          OLDER POSTS <i className='fa-solid fa-arrow-right'></i>
+        <SmartLink href={{
+          pathname: `${pagePrefix}/page/${currentPage + 1}`,
+          query: router.query.s ? { s: router.query.s } : {}
+        }} className={`${showNext ? 'text-cyan-600 dark:text-cyan-400 border border-cyan-500/30 dark:border-cyan-400/30 bg-white/70 dark:bg-black/60 backdrop-blur-sm visible hover:bg-cyan-500 hover:text-white transition-all duration-300' : ' invisible bg-gray pointer-events-none '} no-underline py-2 px-4 rounded-full flex items-center gap-2`}>
+          OLDER POSTS
+          <i className='fa-solid fa-arrow-right'></i>
         </SmartLink>
       </div>
     </div>
