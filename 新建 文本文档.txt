@@ -1,0 +1,165 @@
+NotionNext自建主题
+💡
+本篇主要介绍在NotionNext中如何 通过复制文件夹简单地创建一个新主题，并且介绍每个主题下必须包含的4种文件作用。
+ 
+在新上线的NotionNext4.0中，整体代码结构做了优化梳理，极大简化了用户自建主题的流程，我强烈推荐每个使用者创建自己的个性主题，并为其起一个自己的名字。
+主题管理
+NotionNext会自动扫描themes目录下的所有文件夹。例如themes目录下有一个example文件夹，则您可以在blog.config.js 或环境变量中直接切换当前主题theme为文件夹的名字即可。
+notion image
+ 
+ 
+ 
+添加删除主题
+如需删除主题，只需将某个主题目录整个删除即可，例如删除整个example文件夹，而不影响网站使用。（强迫症福音）
+如需添加主题，可以将别人做好的主题文件夹直接放在themes目录下，或者参考已有的文件夹格式创建自己的主题文件夹。
+ 
+如何创建主题
+💡
+最好的学习方式，就是模仿和复制，然后在您熟练上手了一些技巧后，再开始借助技术手册，尝试二次创作。NotionNext4.0，重新调整了目录结构，让您只需简单复制一个文件夹并重命名，即可开始属于您自己的主题。
+💡
+一开始不推荐自己新建文件夹，而是复制当前已有的主题框架、改名和调整。
+建议选一个您比较喜欢的主题，复制这个主题的整个文件夹，例如复制一个example文件夹，并重命名为您的主题名，例如 adam。
+要切换当前主题，您直接修改配置中的theme为adam即可生效。
+示例：我复制了一个example主题，并重命名为adam，此时我的主题切换按钮中就多了一个adam主题可以选中。
+notion image
+notion image
+主题目录说明
+每个主题文件夹应有四个部分构成：
+文件名
+类型
+说明
+/components
+文件夹
+存放这个主题下的组件
+config.js
+文件
+主题支持的配置
+index.js
+文件
+整个主题的入口；主题的整体布局
+style.js
+文件
+存放这个组件特有的css样式
+1. components
+文件夹用于存放主题中用到的组件。例如卡片、选择框、导航栏、按钮，等等基础组件。这样可以避免重复开发。
+每个主题应该有属于自己的一套组件，不要直接引用其它主题的组件，例如您喜欢fukasawa的博客卡牌组件，可以直接拷贝到您的新主题下使用。
+notion image
+notion image
+2. config.js
+主题中常用的一些开关，参数，颜色等等配置都可以提炼成为配置文件放在此处，便于统一维护修改。例如fukasawa主题的config.js中可以配置是否开关侧边栏。我建议一些可供用户个性化的配置都集中在此。
+notion image
+3. index.js 布局
+主题的入口文件、布局文件，决定用什么方式来将各个小组件组合排列成一个页面。
+前端开发的两个基本核心，一是布局，二是组件。
+布局：决定了每个元素出现在哪里，它占多大空间。
+组件：决定了每个元素的颜色、边框、阴影、字体、图片背景等等。
+作为这个主题的入口文件，NotionNext会寻找这个主题目录下的index.js文件，从而读取布局。以example主题文件为例，example/index.js 的文件底部输出了以下布局：
+
+export {
+  Layout404,
+  LayoutArchive,
+  LayoutBase,
+  LayoutCategoryIndex,
+  LayoutIndex,
+  LayoutPostList,
+  LayoutSearch,
+  LayoutSlug,
+  LayoutTagIndex,
+  CONFIG as THEME_CONFIG
+}
+TypeScript
+ 
+关于布局的详细说明，可点此展开阅读：
+4. style.js 样式
+这里可以直接写css，只奏效于当前主题。
+notion image
+关于前端知识
+前端技术庞大且复杂，而想渲染出好看的主题样式，不追求动画细节或性能的话，只要最基础的布局和组件也就足够。
+另外，这个项目和普通原生的Html项目有些不同，主要有三个内容我需要展开。
+React-JSX：一个适用于开发超大规模前端页面的底层框架。
+NextJS：核心框架快速路由，快速渲染就靠它了。
+TailwindCSS：用语义化的类名，代替传统的style和.css文件，便于维护扩展。
+
+实操案例-自定义鼠标特效
+💡
+这是一个开发示例，通过本文您将学会，如何用NotionNext中的快速插入自定义功能，比如自定义的鼠标特效。
+按此教程，您的网页当鼠标点击后，指针点击处将浮现“社会主义核心价值观”的词条。
+notion image
+操作步骤
+您需要分别修改项目中的两个文件 /public/js/custom.js 以及 /public/css/custom.css ， 即可实现该点击特效。
+当然您也可以选择不改动源代码，而在Notion的配置中心添加，配置中心的GLOBAL_JS对应源代码的/public/js/custom.js，GLOBAL_CSS对应代码中的/public/css/custom_css：
+notion image
+ 
+1. 脚本
+在您的仓库中找到 /public/js/custom.js ， 这里可以填写你的自定义js脚本，在文件结尾添加以下内容
+/**
+ * 封装文字弹出的函数
+ * @param {*} arr
+ * @param {*} options
+ * @returns
+ */
+const fnTextPopup = function (arr, options) {
+  // arr参数是必须的
+  if (!arr || !arr.length) {
+    return
+  }
+  // 主逻辑
+  let index = 0
+  document.documentElement.addEventListener('click', function (event) {
+    const x = event.pageX; const y = event.pageY
+    const eleText = document.createElement('span')
+    // 随机颜色
+    eleText.style.color = 'rgb(' + 255 * Math.random() + ',' + 255 * Math.random() + ',' + 255 * Math.random() + ')'
+    // 动画样式
+    eleText.className = 'text-popup'
+    this.appendChild(eleText)
+    if (arr[index]) {
+      eleText.innerHTML = arr[index]
+    } else {
+      index = 0
+      eleText.innerHTML = arr[0]
+    }
+    // 动画结束后删除自己
+    eleText.addEventListener('animationend', function () {
+      eleText.parentNode.removeChild(eleText)
+    })
+    // 位置
+    eleText.style.left = (x - eleText.clientWidth / 2) + 'px'
+    eleText.style.top = (y - eleText.clientHeight) + 'px'
+    // index递增
+    index++
+  })
+}
+
+// 执行，传入文字内容
+fnTextPopup(['❤富强❤', '❤民主❤', '❤文明❤', '❤和谐❤', '❤自由❤', '❤平等❤', '❤公正❤', '❤法治❤', '❤爱国❤', '❤敬业❤', '❤诚信❤', '❤友善❤'])
+JavaScript
+如图
+notion image
+2. 动画样式
+在 /public/css/custom.css 中添加如下样式
+.text-popup {
+    animation: textPopup 1s;
+    color: red;
+    user-select: none;
+    white-space: nowrap;
+    position: absolute;
+    z-index: 99;
+}
+@keyframes textPopup {
+    0%, 100% {
+        opacity: 0;
+    }
+    5% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-50px);    
+    }
+}
+CSS
+如图
+notion image
+ 
+结束
+修改以上两个文件后，项目重新部署，任务完成。
