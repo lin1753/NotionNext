@@ -1,7 +1,7 @@
 {
   "tool_name": "Bash",
-  "tool_input_preview": "{\"command\":\"cd /d/Project/11/NotionNext-main && ls -la .git 2>/dev/null && git remote -v\",\"description\":\"Check if the other project directory is a git repo\"}",
-  "error": "Exit code 1\n/usr/bin/bash: line 1: cd: /d/Project/11/NotionNext-main: No such file or directory",
-  "timestamp": "2026-04-14T07:50:38.663Z",
+  "tool_input_preview": "{\"command\":\"sed -i 's/<Footer {...props} \\\\/>/<Footer {...props} \\\\/>\\\\n\\\\n      {/* 鼠标轨迹容器 */}\\\\n      <div ref={cursorTrailRef} className=\\\"cursor-trail\\\" \\\\/>/g' themes/miku/index.js\",\"description\"...",
+  "error": "Exit code 1\nsed: -e expression #1, char 60: unknown option to `s'",
+  "timestamp": "2026-04-14T09:05:20.200Z",
   "retry_count": 1
 }

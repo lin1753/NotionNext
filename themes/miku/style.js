@@ -265,22 +265,27 @@ const Style = () => {
       position: fixed;
       pointer-events: none;
       z-index: 9999;
-      opacity: 0;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      overflow: visible;
     }
 
     .cursor-note {
-      position: absolute;
+      position: fixed;
       width: 8px;
       height: 8px;
-      background: linear-gradient(135deg, #00C2D1, #7EE8D5);
       border-radius: 50%;
       animation: note-float 1s ease-out forwards;
-      box-shadow: 0 0 10px rgba(0, 194, 209, 0.8);
+      box-shadow: 0 0 10px rgba(0, 194, 209, 0.8), 0 0 20px rgba(0, 194, 209, 0.4);
+      pointer-events: none;
     }
 
     @keyframes note-float {
       0% { opacity: 1; transform: translateY(0) scale(1); }
-      100% { opacity: 0; transform: translateY(-30px) scale(0.5); }
+      50% { opacity: 0.8; transform: translateY(-20px) scale(1.2); }
+      100% { opacity: 0; transform: translateY(-40px) scale(0.3); }
     }
   `}</style>
 }

@@ -56,8 +56,8 @@ const RecommendPosts = dynamic(() => import('./components/RecommendPosts'), {
 })
 
 // 主题全局状态
-const ThemeGlobalSimple = createContext()
-export const useSimpleGlobal = () => useContext(ThemeGlobalSimple)
+const ThemeGlobalMiku = createContext()
+export const useMikuGlobal = () => useContext(ThemeGlobalMiku)
 
 /**
  * 基础布局
@@ -69,12 +69,82 @@ const LayoutBase = props => {
   const { children, slotTop } = props
   const { onLoading, fullWidth } = useGlobal()
   const searchModal = useRef(null)
+  const cursorTrailRef = useRef(null)
+
+  // 鼠标轨迹动画
+  useEffect(() => {
+    if (!isBrowser) return
+
+    let lastX = 0
+    let lastY = 0
+    let animationFrameId
+
+    const handleMouseMove = (e) => {
+      const now = Date.now()
+
+      // 距离检查，避免过于密集
+      const distance = Math.sqrt(
+        Math.pow(e.clientX - lastX, 2) + Math.pow(e.clientY - lastY, 2)
+      )
+
+      if (distance < 15) return
+
+      lastX = e.clientX
+      lastY = e.clientY
+
+      // 创建音符粒子
+      const createNote = () => {
+        const note = document.createElement('div')
+        note.className = 'cursor-note'
+        note.style.left = e.clientX + 'px'
+        note.style.top = e.clientY + 'px'
+
+        // 随机颜色变化
+        const colors = [
+          'linear-gradient(135deg, #00C2D1, #7EE8D5)',
+          'linear-gradient(135deg, #0A84FF, #00C2D1)',
+          'linear-gradient(135deg, #7EE8D5, #0A84FF)',
+          'linear-gradient(135deg, #00C2D1, #0A84FF)'
+        ]
+        note.style.background = colors[Math.floor(Math.random() * colors.length)]
+
+        // 随机大小
+        const size = Math.random() * 4 + 6
+        note.style.width = size + 'px'
+        note.style.height = size + 'px'
+
+        // 随机偏移
+        const offsetX = (Math.random() - 0.5) * 20
+        const offsetY = (Math.random() - 0.5) * 20
+        note.style.transform = `translate(${offsetX}px, ${offsetY}px)`
+
+        cursorTrailRef.current.appendChild(note)
+
+        // 动画结束后移除
+        setTimeout(() => {
+          note.remove()
+        }, 1000)
+      }
+
+      // 限制创建频率
+      animationFrameId = requestAnimationFrame(createNote)
+    }
+
+    document.addEventListener('mousemove', handleMouseMove)
+
+    return () => {
+      document.removeEventListener('mousemove', handleMouseMove)
+      if (animationFrameId) {
+        cancelAnimationFrame(animationFrameId)
+      }
+    }
+  }, [])
 
   return (
-    <ThemeGlobalSimple.Provider value={{ searchModal }}>
+    <ThemeGlobalMiku.Provider value={{ searchModal }}>
       <div
         id='theme-miku'
-        className={`${siteConfig('FONT_STYLE')} min-h-screen flex flex-col dark:text-gray-300  bg-white dark:bg-black scroll-smooth`}>
+        className={`${siteConfig('FONT_STYLE')} min-h-screen flex flex-col dark:text-gray-300  bg-transparent scroll-smooth`}>
         <Style />
 
         {siteConfig('MIKU_TOP_BAR', null, CONFIG) && <TopBar {...props} />}
@@ -128,8 +198,11 @@ const LayoutBase = props => {
         <AlgoliaSearchModal cRef={searchModal} {...props} />
 
         <Footer {...props} />
+
+      {/* 鼠标轨迹容器 */}
+      <div ref={cursorTrailRef} className="cursor-trail" />
       </div>
-    </ThemeGlobalSimple.Provider>
+    </ThemeGlobalMiku.Provider>
   )
 }
 

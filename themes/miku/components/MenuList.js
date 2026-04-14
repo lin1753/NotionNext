@@ -82,7 +82,7 @@ export const MenuList = ({ customNav, customMenu }) => {
         className='flex md:hidden my-auto justify-start'>
         <div
           onClick={toggleIsOpen}
-          className='cursor-pointer hover:text-red-400 transition-all duration-200'>
+          className='cursor-pointer hover:text-cyan-400 transition-all duration-200'>
           <i
             className={`${isOpen && 'rotate-90'} transition-all duration-200 fa fa-bars mr-3`}
           />
@@ -95,7 +95,7 @@ export const MenuList = ({ customNav, customMenu }) => {
           isOpen={isOpen}>
           <div
             id='menu-wrap'
-            className='bg-white dark:border-hexo-black-gray border'>
+            className='bg-white/80 dark:bg-black/80 backdrop-blur-md border border-white/30 dark:border-white/10 rounded-b-xl overflow-hidden mx-2'>
             {links?.map((link, index) => (
               <MenuItemCollapse
                 key={index}

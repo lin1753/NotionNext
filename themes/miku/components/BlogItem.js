@@ -18,14 +18,14 @@ export const BlogItem = props => {
   return (
     <div
       key={post.id}
-      className='h-42 my-6 pb-12 border-b dark:border-gray-800'>
+      className='h-42 my-6 pb-12 border-b border-white/20 dark:border-white/10'>
       {/* 文章标题 */}
 
       <div className='flex'>
         <div className='article-cover h-full'>
           {/* 图片封面 */}
           {showPageCover && (
-            <div className='overflow-hidden mr-2 w-56 h-full'>
+            <div className='overflow-hidden mr-2 w-56 h-full rounded-xl'>
               <SmartLink href={post.href} passHref legacyBehavior>
                 <LazyImage
                   src={post?.pageCoverThumbnail}
@@ -40,7 +40,7 @@ export const BlogItem = props => {
           <h2 className='mb-2'>
             <SmartLink
               href={post.href}
-              className='blog-item-title font-bold text-black text-2xl menu-link'>
+              className='blog-item-title font-bold text-gray-800 dark:text-gray-100 text-2xl menu-link hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors'>
               {siteConfig('POST_TITLE_ICON') && (
                 <NotionIcon icon={post.pageIcon} />
               )}
@@ -55,13 +55,13 @@ export const BlogItem = props => {
                 {' '}
                 <a
                   href={siteConfig('MIKU_AUTHOR_LINK', null, CONFIG)}
-                  className='p-1 hover:text-red-400 transition-all duration-200'>
+                  className='p-1 hover:text-cyan-500 transition-all duration-200'>
                   <i className='fa-regular fa-user'></i> {siteConfig('AUTHOR')}
                 </a>
               </span>
               <span>
                 <SmartLink
-                  className='p-1 hover:text-red-400 transition-all duration-200'
+                  className='p-1 hover:text-cyan-500 transition-all duration-200'
                   href={`/archive#${formatDateFmt(post?.publishDate, 'yyyy-MM')}`}>
                   <i className='fa-regular fa-clock' />{' '}
                   {post.date?.start_date || post.createdTime}
@@ -76,7 +76,7 @@ export const BlogItem = props => {
               {post.category && (
                 <SmartLink href={`/category/${post.category}`} className='p-1'>
                   {' '}
-                  <span className='hover:text-red-400 transition-all duration-200'>
+                  <span className='hover:text-cyan-500 transition-all duration-200'>
                     <i className='fa-regular fa-folder mr-0.5' />
                     {post.category}
                   </span>
@@ -88,7 +88,7 @@ export const BlogItem = props => {
                   <SmartLink
                     key={t}
                     href={`/tag/${t}`}
-                    className=' hover:text-red-400 transition-all duration-200'>
+                    className=' hover:text-cyan-500 transition-all duration-200'>
                     <span> /{t}</span>
                   </SmartLink>
                 ))}
@@ -105,7 +105,7 @@ export const BlogItem = props => {
             {showPreview && post?.blockMap && (
               <div className='overflow-ellipsis truncate'>
                 <NotionPage post={post} />
-                <hr className='border-dashed py-4' />
+                <hr className='border-dashed py-4 border-white/30 dark:border-white/10' />
               </div>
             )}
           </main>
@@ -115,7 +115,7 @@ export const BlogItem = props => {
       <div className='block'>
         <SmartLink
           href={post.href}
-          className='inline-block rounded-sm text-blue-600 dark:text-blue-300  text-xs dark:border-gray-800 border hover:text-red-400 transition-all duration-200 hover:border-red-300 h-9 leading-8 px-5'>
+          className='inline-block rounded-full text-cyan-600 dark:text-cyan-400 text-xs border border-cyan-500/30 dark:border-cyan-400/30 hover:text-white hover:bg-gradient-to-r hover:from-cyan-500 hover:to-blue-500 transition-all duration-300 hover:border-transparent h-9 leading-8 px-5 backdrop-blur-sm bg-white/30 dark:bg-black/30'>
           Continue Reading{' '}
           <i className='fa-solid fa-angle-right align-middle'></i>
         </SmartLink>

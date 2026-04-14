@@ -1,7 +1,7 @@
 import { siteConfig } from '@/lib/config'
 import { useRouter } from 'next/router'
 import { useState } from 'react'
-import { useSimpleGlobal } from '..'
+import { useMikuGlobal } from '..'
 import { MenuList } from './MenuList'
 
 /**
@@ -12,7 +12,7 @@ import { MenuList } from './MenuList'
 export default function NavBar(props) {
   const [showSearchInput, changeShowSearchInput] = useState(false)
   const router = useRouter()
-  const { searchModal } = useSimpleGlobal()
+  const { searchModal } = useMikuGlobal()
 
   // 展示搜索框
   const toggleShowSearchInput = () => {
@@ -25,7 +25,7 @@ export default function NavBar(props) {
 
   const onKeyUp = e => {
     if (e.keyCode === 13) {
-      const search = document.getElementById('simple-search').value
+      const search = document.getElementById('miku-search').value
       if (search) {
         router.push({ pathname: '/search/' + search })
       }
@@ -33,7 +33,7 @@ export default function NavBar(props) {
   }
 
   return (
-    <nav className='w-full bg-white md:pt-0  relative z-20 shadow border-t border-gray-100 dark:border-hexo-black-gray dark:bg-black'>
+    <nav className='w-full bg-white/70 dark:bg-black/60 md:pt-0 relative z-20 backdrop-blur-md border-t border-white/30 dark:border-white/10'>
       <div
         id='nav-bar-inner'
         className='h-12 mx-auto max-w-9/10 justify-between items-center text-sm md:text-md md:justify-start'>
@@ -42,9 +42,9 @@ export default function NavBar(props) {
           {showSearchInput && (
             <input
               autoFocus
-              id='simple-search'
+              id='miku-search'
               onKeyUp={onKeyUp}
-              className='float-left w-full outline-none h-full px-4'
+              className='float-left w-full outline-none h-full px-4 bg-transparent'
               aria-label='Submit search'
               type='search'
               name='s'
@@ -55,7 +55,7 @@ export default function NavBar(props) {
           {!showSearchInput && <MenuList {...props} />}
         </div>
 
-        <div className='absolute right-12 h-full text-center px-2 flex items-center text-blue-400  cursor-pointer'>
+        <div className='absolute right-12 h-full text-center px-2 flex items-center text-cyan-500 cursor-pointer'>
           {/* <!-- extra links --> */}
           <i
             className={

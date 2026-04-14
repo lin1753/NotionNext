@@ -30,7 +30,7 @@ export const MenuItemDrop = ({ link }) => {
 
       {hasSubMenu && (
         <>
-          <div className='cursor-pointer  menu-link pl-2 pr-4 text-gray-700 dark:text-gray-200 no-underline tracking-widest pb-1'>
+          <div className='cursor-pointer menu-link pl-2 pr-4 text-gray-700 dark:text-gray-200 no-underline tracking-widest pb-1'>
             {link?.icon && (
               <span className='mr-2'>
                 <i className={link.icon} />
@@ -46,12 +46,12 @@ export const MenuItemDrop = ({ link }) => {
       {/* 子菜单 */}
       {hasSubMenu && (
         <ul
-          className={`${show ? 'visible opacity-100 top-12' : 'invisible opacity-0 top-10'} border-gray-100  bg-white  dark:bg-black dark:border-gray-800 transition-all duration-300 z-20 absolute block drop-shadow-lg `}>
+          className={`${show ? 'visible opacity-100 top-12' : 'invisible opacity-0 top-10'} border border-white/30 bg-white/85 backdrop-blur-md dark:bg-black/70 dark:border-white/10 transition-all duration-300 z-20 absolute block drop-shadow-lg rounded-xl overflow-hidden`}>
           {link.subMenus.map((sLink, index) => {
             return (
               <li
                 key={index}
-                className='not:last-child:border-b-0 border-b text-blue-600 dark:text-blue-300 hover:bg-gray-50 dark:hover:bg-gray-900 tracking-widest transition-all duration-200 dark:border-gray-800  py-3 pr-6 pl-2'>
+                className='not:last-child:border-b-0 border-b text-cyan-600 dark:text-cyan-300 hover:bg-cyan-50/50 dark:hover:bg-white/10 tracking-widest transition-all duration-200 dark:border-white/10 py-3 pr-6 pl-2'>
                 <SmartLink href={sLink.href} target={link?.target}>
                   <span className='text-sm text-nowrap'>
                     {sLink?.icon && <i className={sLink?.icon}> &nbsp; </i>}
