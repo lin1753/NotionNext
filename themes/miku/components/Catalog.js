@@ -59,8 +59,8 @@ const Catalog = ({ post }) => {
   }
 
   return (
-    <div className='px-3 '>
-      <div className='dark:text-white mb-2'>
+    <div className='glass-card p-4 rounded-2xl bg-white/70 dark:bg-black/50 backdrop-blur-md border border-white/30 dark:border-white/10'>
+      <div className='dark:text-white mb-3 font-semibold text-cyan-600 dark:text-cyan-400'>
         <i className='mr-1 fas fa-stream' />
         {locale.COMMON.TABLE_OF_CONTENTS}
       </div>
@@ -68,21 +68,20 @@ const Catalog = ({ post }) => {
       <div
         className='overflow-y-auto overscroll-none max-h-36 lg:max-h-96 scroll-hidden'
         ref={tRef}>
-        <nav className='h-full  text-black'>
+        <nav className='h-full text-gray-700 dark:text-gray-300'>
           {post?.toc?.map(tocItem => {
             const id = uuidToId(tocItem.id)
             return (
               <a
                 key={id}
                 href={`#${id}`}
-                className={`${activeSection === id && 'dark:border-white border-red-700 text-red-700 font-bold'} hover:font-semibold border-l pl-4 block hover:text-red-600 border-lduration-300 transform dark:text-red-400 dark:border-red-400
-                notion-table-of-contents-item-indent-level-${tocItem.indentLevel} catalog-item `}>
+                className={`${activeSection === id && 'border-cyan-500 text-cyan-600 dark:text-cyan-400 font-bold bg-cyan-50/50 dark:bg-cyan-900/20'} hover:font-semibold border-l-2 pl-4 block hover:text-cyan-500 hover:border-cyan-400 border-gray-200 dark:border-gray-700 duration-300 transform catalog-item `}>
                 <span
                   style={{
                     display: 'inline-block',
-                    marginLeft: tocItem.indentLevel * 16
+                    marginLeft: tocItem.indentLevel * 12
                   }}
-                  className={`truncate ${activeSection === id ? ' font-bold text-red-600 dark:text-white underline' : ''}`}>
+                  className={`truncate ${activeSection === id ? ' font-bold text-cyan-600 dark:text-cyan-400' : ''}`}>
                   {tocItem.text}
                 </span>
               </a>
