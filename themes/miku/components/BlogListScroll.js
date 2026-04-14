@@ -61,9 +61,21 @@ export default function BlogListScroll(props) {
 
       <div
         onClick={handleGetMore}
-        className='w-full my-4 py-4 text-center cursor-pointer '>
+        className={`w-full my-4 py-4 text-center cursor-pointer glass-card rounded-xl bg-white/70 dark:bg-black/60 backdrop-blur-md border border-white/30 dark:border-white/10 transition-all duration-300 hover:border-cyan-400/50 ${hasMore ? 'hover:shadow-lg hover:shadow-cyan-500/10' : ''}`}>
         {' '}
-        {hasMore ? locale.COMMON.MORE : `${locale.COMMON.NO_MORE} 😰`}{' '}
+        <span className={`${hasMore ? 'text-cyan-600 dark:text-cyan-400' : 'text-gray-500'}`}>
+          {hasMore ? (
+            <>
+              <i className='fas fa-chevron-down mr-2 animate-bounce'></i>
+              {locale.COMMON.MORE}
+            </>
+          ) : (
+            <>
+              <i className='fas fa-check-circle mr-2'></i>
+              {locale.COMMON.NO_MORE}
+            </>
+          )}
+        </span>
       </div>
     </div>
   )
