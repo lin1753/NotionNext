@@ -13,14 +13,15 @@ const SocialButton = () => {
 
   return (
     <div className='w-52 justify-center flex-wrap flex my-2'>
-      <div className='space-x-5 md:text-xl text-3xl text-gray-600 dark:text-gray-400 text-center'>
+      <div className='space-x-3 md:text-xl text-3xl text-gray-600 dark:text-gray-400 text-center'>
         {siteConfig('CONTACT_GITHUB') && (
           <a
             target='_blank'
             rel='noreferrer'
             title={'github'}
-            href={siteConfig('CONTACT_GITHUB')}>
-            <i className='fab fa-github transform hover:scale-125 duration-150' />
+            href={siteConfig('CONTACT_GITHUB')}
+            className='inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/70 dark:bg-black/60 backdrop-blur-sm border border-white/30 dark:border-white/10 hover:border-cyan-400/50 hover:text-cyan-500 transition-all duration-300 hover:scale-110'>
+            <i className='fab fa-github' />
           </a>
         )}
         {siteConfig('CONTACT_TWITTER') && (
@@ -28,8 +29,9 @@ const SocialButton = () => {
             target='_blank'
             rel='noreferrer'
             title={'twitter'}
-            href={siteConfig('CONTACT_TWITTER')}>
-            <i className='fab fa-twitter transform hover:scale-125 duration-150' />
+            href={siteConfig('CONTACT_TWITTER')}
+            className='inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/70 dark:bg-black/60 backdrop-blur-sm border border-white/30 dark:border-white/10 hover:border-cyan-400/50 hover:text-cyan-500 transition-all duration-300 hover:scale-110'>
+            <i className='fab fa-twitter' />
           </a>
         )}
         {siteConfig('CONTACT_TELEGRAM') && (
@@ -37,8 +39,9 @@ const SocialButton = () => {
             target='_blank'
             rel='noreferrer'
             href={siteConfig('CONTACT_TELEGRAM')}
-            title={'telegram'}>
-            <i className='fab fa-telegram transform hover:scale-125 duration-150' />
+            title={'telegram'}
+            className='inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/70 dark:bg-black/60 backdrop-blur-sm border border-white/30 dark:border-white/10 hover:border-cyan-400/50 hover:text-cyan-500 transition-all duration-300 hover:scale-110'>
+            <i className='fab fa-telegram' />
           </a>
         )}
         {siteConfig('CONTACT_LINKEDIN') && (
@@ -46,8 +49,9 @@ const SocialButton = () => {
             target='_blank'
             rel='noreferrer'
             href={siteConfig('CONTACT_LINKEDIN')}
-            title={'linkedIn'}>
-            <i className='fab fa-linkedin transform hover:scale-125 duration-150' />
+            title={'linkedIn'}
+            className='inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/70 dark:bg-black/60 backdrop-blur-sm border border-white/30 dark:border-white/10 hover:border-cyan-400/50 hover:text-cyan-500 transition-all duration-300 hover:scale-110'>
+            <i className='fab fa-linkedin' />
           </a>
         )}
         {siteConfig('CONTACT_WEIBO') && (
@@ -55,8 +59,9 @@ const SocialButton = () => {
             target='_blank'
             rel='noreferrer'
             title={'weibo'}
-            href={siteConfig('CONTACT_WEIBO')}>
-            <i className='fab fa-weibo transform hover:scale-125 duration-150' />
+            href={siteConfig('CONTACT_WEIBO')}
+            className='inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/70 dark:bg-black/60 backdrop-blur-sm border border-white/30 dark:border-white/10 hover:border-cyan-400/50 hover:text-cyan-500 transition-all duration-300 hover:scale-110'>
+            <i className='fab fa-weibo' />
           </a>
         )}
         {siteConfig('CONTACT_INSTAGRAM') && (
@@ -64,8 +69,9 @@ const SocialButton = () => {
             target='_blank'
             rel='noreferrer'
             title={'instagram'}
-            href={siteConfig('CONTACT_INSTAGRAM')}>
-            <i className='fab fa-instagram transform hover:scale-125 duration-150' />
+            href={siteConfig('CONTACT_INSTAGRAM')}
+            className='inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/70 dark:bg-black/60 backdrop-blur-sm border border-white/30 dark:border-white/10 hover:border-cyan-400/50 hover:text-cyan-500 transition-all duration-300 hover:scale-110'>
+            <i className='fab fa-instagram' />
           </a>
         )}
         {CONTACT_EMAIL && (
@@ -75,10 +81,10 @@ const SocialButton = () => {
             }
             target='_blank'
             rel='noreferrer'
-            className='cursor-pointer'
+            className='cursor-pointer inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/70 dark:bg-black/60 backdrop-blur-sm border border-white/30 dark:border-white/10 hover:border-cyan-400/50 hover:text-cyan-500 transition-all duration-300 hover:scale-110'
             title={'email'}
             ref={emailIcon}>
-            <i className='fas fa-envelope transform hover:scale-125 duration-150' />
+            <i className='fas fa-envelope' />
           </a>
         )}
         {JSON.parse(siteConfig('ENABLE_RSS')) && (
@@ -86,8 +92,9 @@ const SocialButton = () => {
             target='_blank'
             rel='noreferrer'
             title={'RSS'}
-            href={'/rss/feed.xml'}>
-            <i className='fas fa-rss transform hover:scale-125 duration-150' />
+            href={'/rss/feed.xml'}
+            className='inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/70 dark:bg-black/60 backdrop-blur-sm border border-white/30 dark:border-white/10 hover:border-cyan-400/50 hover:text-cyan-500 transition-all duration-300 hover:scale-110'>
+            <i className='fas fa-rss' />
           </a>
         )}
         {siteConfig('CONTACT_BILIBILI') && (
@@ -95,8 +102,9 @@ const SocialButton = () => {
             target='_blank'
             rel='noreferrer'
             title={'bilibili'}
-            href={siteConfig('CONTACT_BILIBILI')}>
-            <i className='fab fa-bilibili transform hover:scale-125 duration-150' />
+            href={siteConfig('CONTACT_BILIBILI')}
+            className='inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/70 dark:bg-black/60 backdrop-blur-sm border border-white/30 dark:border-white/10 hover:border-cyan-400/50 hover:text-cyan-500 transition-all duration-300 hover:scale-110'>
+            <i className='fab fa-bilibili' />
           </a>
         )}
         {siteConfig('CONTACT_YOUTUBE') && (
@@ -104,8 +112,9 @@ const SocialButton = () => {
             target='_blank'
             rel='noreferrer'
             title={'youtube'}
-            href={siteConfig('CONTACT_YOUTUBE')}>
-            <i className='fab fa-youtube transform hover:scale-125 duration-150' />
+            href={siteConfig('CONTACT_YOUTUBE')}
+            className='inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/70 dark:bg-black/60 backdrop-blur-sm border border-white/30 dark:border-white/10 hover:border-cyan-400/50 hover:text-cyan-500 transition-all duration-300 hover:scale-110'>
+            <i className='fab fa-youtube' />
           </a>
         )}
         {siteConfig('CONTACT_THREADS') && (
@@ -113,8 +122,9 @@ const SocialButton = () => {
             target='_blank'
             rel='noreferrer'
             title={'threads'}
-            href={siteConfig('CONTACT_THREADS')}>
-            <i className='fab fa-threads transform hover:scale-125 duration-150' />
+            href={siteConfig('CONTACT_THREADS')}
+            className='inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/70 dark:bg-black/60 backdrop-blur-sm border border-white/30 dark:border-white/10 hover:border-cyan-400/50 hover:text-cyan-500 transition-all duration-300 hover:scale-110'>
+            <i className='fab fa-threads' />
           </a>
         )}
       </div>
