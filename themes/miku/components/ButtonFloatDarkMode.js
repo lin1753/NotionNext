@@ -9,7 +9,7 @@ import CONFIG from '../config'
 export default function ButtonDarkModeFloat() {
   const { isDarkMode, updateDarkMode } = useGlobal()
 
-  if (!siteConfig('MIKU_WIDGET_DARK_MODE', null, CONFIG)) {
+  if (!siteConfig('HEXO_WIDGET_DARK_MODE', null, CONFIG)) {
     return <></>
   }
 
@@ -36,4 +36,3 @@ export default function ButtonDarkModeFloat() {
     </div>
   )
 }
-

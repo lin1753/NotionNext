@@ -10,7 +10,7 @@ import { RecentComments } from '@waline/client'
  * @param {*} props
  * @returns
  */
-const MIKURecentComments = (props) => {
+const MikuRecentComments = (props) => {
   const [comments, updateComments] = useState([])
   const { locale } = useGlobal()
   const [onLoading, changeLoading] = useState(true)
@@ -44,5 +44,4 @@ const MIKURecentComments = (props) => {
   )
 }
 
-export default MIKURecentComments
-
+export default MikuRecentComments

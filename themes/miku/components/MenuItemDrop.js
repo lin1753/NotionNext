@@ -1,7 +1,8 @@
 import SmartLink from '@/components/SmartLink'
 import { useState } from 'react'
 /**
- * 支持二级展开的菜�? * @param {*} param0
+ * 支持二级展开的菜单
+ * @param {*} param0
  * @returns
  */
 export const MenuItemDrop = ({ link }) => {
@@ -40,11 +41,11 @@ export const MenuItemDrop = ({ link }) => {
         </>
       )}
 
-      {/* 子菜�?*/}
+      {/* 子菜单 */}
       {hasSubMenu && (
         <ul
           style={{ backdropFilter: 'blur(3px)' }}
-          className={`${show ? 'visible opacity-100 top-12 pointer-events-auto' : 'invisible opacity-0 top-20 pointer-events-none'} drop-shadow-md overflow-hidden rounded-md text-black dark:text-white elevated-card transition-all duration-300 z-20 absolute block  `}>
+          className={`${show ? 'visible opacity-100 top-12 pointer-events-auto' : 'invisible opacity-0 top-20 pointer-events-none'} drop-shadow-md overflow-hidden rounded-md text-black dark:text-white bg-white dark:bg-black transition-all duration-300 z-20 absolute block  `}>
           {link.subMenus.map((sLink, index) => {
             return (
               <li

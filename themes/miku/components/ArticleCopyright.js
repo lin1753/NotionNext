@@ -15,7 +15,7 @@ export default function ArticleCopyright() {
 
   const { locale } = useGlobal()
 
-  if (!siteConfig('MIKU_ARTICLE_COPYRIGHT', null, CONFIG)) {
+  if (!siteConfig('HEXO_ARTICLE_COPYRIGHT', null, CONFIG)) {
     return <></>
   }
 
@@ -40,7 +40,7 @@ export default function ArticleCopyright() {
           <strong className='mr-2'>{locale.COMMON.COPYRIGHT}:</strong>
           {locale.COMMON.COPYRIGHT_NOTICE}
         </li>
-        {siteConfig('MIKU_ARTICLE_NOT_BY_AI', false, CONFIG) && (
+        {siteConfig('HEXO_ARTICLE_NOT_BY_AI', false, CONFIG) && (
           <li>
             <NotByAI />
           </li>
@@ -49,4 +49,3 @@ export default function ArticleCopyright() {
     </section>
   )
 }
-

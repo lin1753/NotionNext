@@ -65,13 +65,13 @@ const Hero = props => {
         <div className='font-black text-4xl md:text-5xl shadow-text'>
           {siteInfo?.title || siteConfig('TITLE')}
         </div>
-        {/* 站点欢迎�?*/}
+        {/* 站点欢迎语 */}
         <div className='mt-2 h-12 items-center text-center font-medium shadow-text text-lg'>
           <span id='typed' />
         </div>
 
-        {/* 首页导航大按�?*/}
-        {siteConfig('MIKU_HOME_NAV_BUTTONS', null, CONFIG) && (
+        {/* 首页导航大按钮 */}
+        {siteConfig('HEXO_HOME_NAV_BUTTONS', null, CONFIG) && (
           <NavButtonGroup {...props} />
         )}
 
@@ -80,7 +80,7 @@ const Hero = props => {
           onClick={scrollToWrapper}
           className='z-10 cursor-pointer w-full text-center py-4 text-3xl absolute bottom-10 text-white'>
           <div className='opacity-70 animate-bounce text-xs'>
-            {siteConfig('MIKU_SHOW_START_READING', null, CONFIG) &&
+            {siteConfig('HEXO_SHOW_START_READING', null, CONFIG) &&
               locale.COMMON.START_READING}
           </div>
           <i className='opacity-70 animate-bounce fas fa-angle-down' />
@@ -91,11 +91,10 @@ const Hero = props => {
         id='header-cover'
         alt={siteInfo?.title}
         src={siteInfo?.pageCover}
-        className={`header-cover w-full h-screen object-cover object-center ${siteConfig('MIKU_HOME_NAV_BACKGROUND_IMG_FIXED', null, CONFIG) ? 'fixed' : ''}`}
+        className={`header-cover w-full h-screen object-cover object-center ${siteConfig('HEXO_HOME_NAV_BACKGROUND_IMG_FIXED', null, CONFIG) ? 'fixed' : ''}`}
       />
     </header>
   )
 }
 
 export default Hero
-

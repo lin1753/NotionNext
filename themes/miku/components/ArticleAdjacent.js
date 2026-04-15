@@ -3,11 +3,12 @@ import CONFIG from '../config'
 import { siteConfig } from '@/lib/config'
 
 /**
- * 上一篇，下一篇文�? * @param {prev,next} param0
+ * 上一篇，下一篇文章
+ * @param {prev,next} param0
  * @returns
  */
 export default function ArticleAdjacent ({ prev, next }) {
-  if (!prev || !next || !siteConfig('MIKU_ARTICLE_ADJACENT', null, CONFIG)) {
+  if (!prev || !next || !siteConfig('HEXO_ARTICLE_ADJACENT', null, CONFIG)) {
     return <></>
   }
   return (
@@ -31,4 +32,3 @@ export default function ArticleAdjacent ({ prev, next }) {
     </section>
   )
 }
-

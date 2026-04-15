@@ -1,7 +1,7 @@
 import { siteConfig } from '@/lib/config'
 import { useGlobal } from '@/lib/global'
 import { useRouter } from 'next/router'
-import { useMIKUGlobal } from '..'
+import { useMikuGlobal } from '..'
 
 /**
  * 搜索按钮
@@ -10,7 +10,7 @@ import { useMIKUGlobal } from '..'
 export default function SearchButton(props) {
   const { locale } = useGlobal()
   const router = useRouter()
-  const { searchModal } = useMIKUGlobal()
+  const { searchModal } = useMikuGlobal()
 
   function handleSearch() {
     if (siteConfig('ALGOLIA_APP_ID')) {
@@ -26,4 +26,3 @@ export default function SearchButton(props) {
         </div>
     </>
 }
-

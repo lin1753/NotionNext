@@ -39,11 +39,13 @@ const AlgoliaSearchModal = dynamic(
   { ssr: false }
 )
 
-// 主题全局状�?const ThemeGlobalMIKU = createContext()
-export const useMIKUGlobal = () => useContext(ThemeGlobalMIKU)
+// 主题全局状态
+const ThemeGlobalMiku = createContext()
+export const useMikuGlobal = () => useContext(ThemeGlobalMiku)
 
 /**
- * 基础布局 采用左右两侧布局，移动端使用顶部导航�? * @param props
+ * 基础布局 采用左右两侧布局，移动端使用顶部导航栏
+ * @param props
  * @returns {JSX.Element}
  * @constructor
  */
@@ -51,12 +53,12 @@ const LayoutBase = props => {
   const { post, children, slotTop, className } = props
   const { onLoading, fullWidth } = useGlobal()
   const router = useRouter()
-  const showRandomButton = siteConfig('MIKU_MENU_RANDOM', false, CONFIG)
+  const showRandomButton = siteConfig('HEXO_MENU_RANDOM', false, CONFIG)
 
   const headerSlot = post ? (
     <PostHero {...props} />
   ) : router.route === '/' &&
-    siteConfig('MIKU_HOME_BANNER_ENABLE', null, CONFIG) ? (
+    siteConfig('HEXO_HOME_BANNER_ENABLE', null, CONFIG) ? (
     <Hero {...props} />
   ) : null
 
@@ -80,7 +82,8 @@ const LayoutBase = props => {
     </>
   )
 
-  // Algolia搜索�?  const searchModal = useRef(null)
+  // Algolia搜索框
+  const searchModal = useRef(null)
   const cursorTrailRef = useRef(null)
 
   // Miku 鼠标轨迹动画
@@ -89,7 +92,6 @@ const LayoutBase = props => {
 
     let lastX = 0
     let lastY = 0
-    let animationFrameId
     let throttle = false
 
     const handleMouseMove = (e) => {
@@ -99,7 +101,7 @@ const LayoutBase = props => {
       if (distance > 25) {
         throttle = true
         // 随机音符
-        const noteShapes = ['�?, '�?, '�?, '�?]
+        const noteShapes = ['♪', '♫', '♩', '♬']
         const noteColors = ['#00C2D1', '#0A84FF', '#7EE8D5']
 
         const note = document.createElement('div')
@@ -137,10 +139,10 @@ const LayoutBase = props => {
   }, [])
 
   return (
-    <ThemeGlobalMIKU.Provider value={{ searchModal }}>
+    <ThemeGlobalMiku.Provider value={{ searchModal }}>
       <div
-        id='theme-MIKU'
-        className={`${siteConfig('FONT_STYLE')} bg-transparent scroll-smooth`}>
+        id='theme-miku'
+        className={`${siteConfig('FONT_STYLE')} dark:bg-black scroll-smooth`}>
         <Style />
 
         {/* 顶部导航 */}
@@ -160,10 +162,10 @@ const LayoutBase = props => {
           {headerSlot}
         </Transition>
 
-        {/* 主区�?*/}
+        {/* 主区块 */}
         <main
           id='wrapper'
-          className={`${siteConfig('MIKU_HOME_BANNER_ENABLE', null, CONFIG) ? '' : 'pt-16'}  w-full py-8 md:px-8 lg:px-24 min-h-screen relative`}>
+          className={`${siteConfig('HEXO_HOME_BANNER_ENABLE', null, CONFIG) ? '' : 'pt-16'} bg-transparent dark:bg-transparent w-full py-8 md:px-8 lg:px-24 min-h-screen relative`}>
           <div
             id='container-inner'
             className={
@@ -191,7 +193,7 @@ const LayoutBase = props => {
               </Transition>
             </div>
 
-            {/* 右侧�?*/}
+            {/* 右侧栏 */}
             <SideRight {...props} />
           </div>
         </main>
@@ -206,13 +208,13 @@ const LayoutBase = props => {
         {/* 全文搜索 */}
         <AlgoliaSearchModal cRef={searchModal} {...props} />
 
-        {/* Footer */}
+        {/* 页脚 */}
         <Footer title={siteConfig('TITLE')} />
 
         {/* 鼠标轨迹容器 */}
         <div ref={cursorTrailRef} className="cursor-trail" />
       </div>
-    </ThemeGlobalMIKU.Provider>
+    </ThemeGlobalMiku.Provider>
   )
 }
 
@@ -295,7 +297,7 @@ const LayoutArchive = props => {
   return (
     <div className='pt-8'>
       <Card className='w-full'>
-        <div className='mb-10 pb-20 bg-transparent md:p-12 p-3 min-h-full dark:bg-MIKU-black-gray'>
+        <div className='mb-10 pb-20 bg-white md:p-12 p-3 min-h-full dark:bg-miku-black-gray'>
           {Object.keys(archivePosts).map(archiveTitle => (
             <BlogPostArchive
               key={archiveTitle}
@@ -327,7 +329,7 @@ const LayoutSlug = props => {
             const article = document.querySelector('#article-wrapper #notion-article')
             if (!article) {
               router.push('/404').then(() => {
-                console.warn('找不到页�?, router.asPath)
+                console.warn('找不到页面', router.asPath)
               })
             }
           }
@@ -338,7 +340,7 @@ const LayoutSlug = props => {
   }, [post])
   return (
     <>
-      <div className='w-full lg:hover:shadow lg:border rounded-t-xl lg:rounded-xl lg:px-2 lg:py-4 bg-transparent dark:bg-MIKU-black-gray dark:border-black article'>
+      <div className='w-full lg:hover:shadow lg:border rounded-t-xl lg:rounded-xl lg:px-2 lg:py-4 elevated-card dark:bg-miku-black-gray dark:border-black article'>
         {lock && <ArticleLock validPassword={validPassword} />}
 
         {!lock && post && (
@@ -347,7 +349,7 @@ const LayoutSlug = props => {
               id='article-wrapper'
               itemScope
               itemType='https://schema.org/Movie'
-              className='subpixel-antialiased overflow-y-hidden elevated-card  p-8 mb-10 w-full xl:max-w-4xl 2xl:max-w-6xl mx-auto'>
+              className='subpixel-antialiased overflow-y-hidden'>
               {/* Notion文章主体 */}
               <section className='px-5 justify-center mx-auto max-w-2xl lg:max-w-full'>
                 {post && <NotionPage post={post} />}
@@ -367,7 +369,7 @@ const LayoutSlug = props => {
             <div className='pt-4 border-dashed'></div>
 
             {/* 评论互动 */}
-            <div className='duration-200 overflow-x-auto bg-transparent dark:bg-MIKU-black-gray px-3'>
+            <div className='duration-200 overflow-x-auto bg-white dark:bg-miku-black-gray px-3'>
               <Comment frontMatter={post} />
             </div>
           </div>
@@ -392,7 +394,7 @@ const Layout404 = props => {
         const article = document.querySelector('#article-wrapper #notion-article')
         if (!article) {
           router.push('/').then(() => {
-            // console.log('找不到页�?, router.asPath)
+            // console.log('找不到页面', router.asPath)
           })
         }
       }
@@ -490,4 +492,3 @@ export {
   LayoutTagIndex,
   CONFIG as THEME_CONFIG
 }
-

@@ -7,7 +7,7 @@ import CONFIG from '../config'
  * @constructor
  */
 const ButtonJumpToComment = () => {
-  if (!siteConfig('MIKU_WIDGET_TO_COMMENT', null, CONFIG)) {
+  if (!siteConfig('HEXO_WIDGET_TO_COMMENT', null, CONFIG)) {
     return <></>
   }
 
@@ -18,7 +18,8 @@ const ButtonJumpToComment = () => {
         behavior: 'smooth'
       })
     }
-    // 兼容性不�?    // const commentElement = document.getElementById('comment')
+    // 兼容性不好
+    // const commentElement = document.getElementById('comment')
     // if (commentElement) {
     // commentElement?.scrollIntoView({ behavior: 'smooth', block: 'start', inline: 'nearest' })
   }
@@ -33,4 +34,3 @@ const ButtonJumpToComment = () => {
 }
 
 export default ButtonJumpToComment
-

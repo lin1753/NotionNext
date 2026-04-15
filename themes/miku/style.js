@@ -8,8 +8,8 @@ import CONFIG from './config'
  * @returns
  */
 const Style = () => {
-  // 从配置中获取主题色，如果没有配置则使用默认�?#928CEE
-  const themeColor = siteConfig('MIKU_THEME_COLOR', '#928CEE', CONFIG)
+  // 从配置中获取主题色，如果没有配置则使用默认值 #928CEE
+  const themeColor = siteConfig('HEXO_THEME_COLOR', '#928CEE', CONFIG)
 
   return (
     <style jsx global>{`
@@ -17,92 +17,16 @@ const Style = () => {
         --theme-color: ${themeColor};
       }
 
-      /* 基础重置，使得背景真正透明以透出桌面背景 */
-      html, body {
-        background-color: transparent !important;
-        margin: 0;
-        padding: 0;
+      // 底色
+      #theme-miku body {
+        background-color: #f5f5f5;
+      }
+      .dark #theme-miku body {
+        background-color: black;
       }
 
-      body::before {
-        content: '';
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100vw;
-        height: 100vh;
-        background: url('/miku.jpg') no-repeat center center;
-        background-size: cover;
-        z-index: -2;
-      }
-
-      body::after {
-        content: '';
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100vw;
-        height: 100vh;
-        background: rgba(255, 255, 255, 0.15);
-        z-index: -1;
-        pointer-events: none;
-      }
-
-      .dark body::after {
-        background: rgba(0, 0, 0, 0.5);
-      }
-
-      #theme-MIKU body {
-        background-color: transparent !important;
-      }
-      .dark #theme-MIKU body {
-        background-color: transparent !important;
-      }
-
-      /* 毛玻璃特效 */
-      .elevated-card {
-        background: rgba(255, 255, 255, 0.85);
-        backdrop-filter: saturate(150%) blur(30px);
-        -webkit-backdrop-filter: saturate(150%) blur(30px);
-        border-radius: 20px;
-        box-shadow: 0 8px 32px rgba(0, 194, 209, 0.1), 0 4px 12px rgba(0, 0, 0, 0.04);
-        border: 1px solid rgba(255, 255, 255, 0.5);
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-      }
-
-      .elevated-card:hover {
-        box-shadow: 0 12px 48px rgba(0, 194, 209, 0.2), 0 8px 16px rgba(0, 0, 0, 0.06);
-        transform: translateY(-2px);
-      }
-
-      .dark .elevated-card {
-        background: rgba(40, 40, 40, 0.85);
-        border: 1px solid rgba(255, 255, 255, 0.15);
-      }
-
-      /* 针对Miku鼠标拖拽动画的样式 */
-      .miku-note {
-        position: fixed;
-        pointer-events: none;
-        font-size: 20px;
-        color: #00bcd4;
-        animation: note-anim 1.5s ease-out forwards;
-        z-index: 9999;
-      }
-
-      @keyframes note-anim {
-        0% {
-          opacity: 1;
-          transform: translateY(0) scale(1);
-        }
-        100% {
-          opacity: 0;
-          transform: translateY(-50px) scale(0.5);
-        }
-      }
-
-      /*  菜单下划线动�?*/
-      #theme-MIKU .menu-link {
+      /*  菜单下划线动画 */
+      #theme-miku .menu-link {
         text-decoration: none;
         background-image: linear-gradient(
           var(--theme-color),
@@ -114,154 +38,155 @@ const Style = () => {
         transition: background-size 100ms ease-in-out;
       }
 
-      #theme-MIKU .menu-link:hover {
+      #theme-miku .menu-link:hover {
         background-size: 100% 2px;
         color: var(--theme-color);
       }
 
       /* 文章列表中标题行悬浮时的文字颜色 */
-      #theme-MIKU h2:hover .menu-link {
+      #theme-miku h2:hover .menu-link {
         color: var(--theme-color) !important;
       }
-      .dark #theme-MIKU h2:hover .menu-link {
+      .dark #theme-miku h2:hover .menu-link {
         color: var(--theme-color) !important;
       }
 
-      /* 下拉菜单悬浮背景�?*/
-      #theme-MIKU li[class*='hover:bg-indigo-500']:hover {
+      /* 下拉菜单悬浮背景色 */
+      #theme-miku li[class*='hover:bg-indigo-500']:hover {
         background-color: var(--theme-color) !important;
       }
 
-      /* tag标签悬浮背景�?*/
-      #theme-MIKU a[class*='hover:bg-indigo-400']:hover {
+      /* tag标签悬浮背景色 */
+      #theme-miku a[class*='hover:bg-indigo-400']:hover {
         background-color: var(--theme-color) !important;
       }
 
       /* 社交按钮悬浮颜色 */
-      #theme-MIKU i[class*='hover:text-indigo-600']:hover {
+      #theme-miku i[class*='hover:text-indigo-600']:hover {
         color: var(--theme-color) !important;
       }
-      .dark #theme-MIKU i[class*='dark:hover:text-indigo-400']:hover {
+      .dark #theme-miku i[class*='dark:hover:text-indigo-400']:hover {
         color: var(--theme-color) !important;
       }
 
       /* MenuGroup 悬浮颜色 */
-      #theme-MIKU #nav div[class*='hover:text-indigo-600']:hover {
+      #theme-miku #nav div[class*='hover:text-indigo-600']:hover {
         color: var(--theme-color) !important;
       }
-      .dark #theme-MIKU #nav div[class*='dark:hover:text-indigo-400']:hover {
+      .dark #theme-miku #nav div[class*='dark:hover:text-indigo-400']:hover {
         color: var(--theme-color) !important;
       }
 
-      /* 最新发布文章悬浮颜�?*/
-      #theme-MIKU div[class*='hover:text-indigo-600']:hover,
-      #theme-MIKU div[class*='hover:text-indigo-400']:hover {
+      /* 最新发布文章悬浮颜色 */
+      #theme-miku div[class*='hover:text-indigo-600']:hover,
+      #theme-miku div[class*='hover:text-indigo-400']:hover {
         color: var(--theme-color) !important;
       }
 
       /* 分页组件颜色 */
-      #theme-MIKU .text-indigo-400 {
+      #theme-miku .text-indigo-400 {
         color: var(--theme-color) !important;
       }
-      #theme-MIKU .border-indigo-400 {
+      #theme-miku .border-indigo-400 {
         border-color: var(--theme-color) !important;
       }
-      #theme-MIKU a[class*='hover:bg-indigo-400']:hover {
+      #theme-miku a[class*='hover:bg-indigo-400']:hover {
         background-color: var(--theme-color) !important;
         color: white !important;
       }
       /* 移动设备下，搜索组件中选中分类的高亮背景色 */
-      #theme-MIKU div[class*='hover:bg-indigo-400']:hover {
+      #theme-miku div[class*='hover:bg-indigo-400']:hover {
         background-color: var(--theme-color) !important;
       }
-      #theme-MIKU .hover\:bg-indigo-400:hover {
+      #theme-miku .hover\:bg-indigo-400:hover {
         background-color: var(--theme-color) !important;
       }
-      #theme-MIKU .bg-indigo-400 {
+      #theme-miku .bg-indigo-400 {
         background-color: var(--theme-color) !important;
       }
-      #theme-MIKU a[class*='hover:bg-indigo-600']:hover {
+      #theme-miku a[class*='hover:bg-indigo-600']:hover {
         background-color: var(--theme-color) !important;
         color: white !important;
       }
 
       /* 右下角悬浮按钮背景色 */
-      #theme-MIKU .bg-indigo-500 {
+      #theme-miku .bg-indigo-500 {
         background-color: var(--theme-color) !important;
       }
-      .dark #theme-MIKU .dark\:bg-indigo-500 {
-        background-color: var(--theme-color) !important;
-      }
-
-      // 移动设备菜单栏选中背景�?      #theme-MIKU div[class*='hover:bg-indigo-500']:hover {
+      .dark #theme-miku .dark\:bg-indigo-500 {
         background-color: var(--theme-color) !important;
       }
 
-      /* 文章浏览进度条颜�?*/
-      #theme-MIKU .bg-indigo-600 {
+      // 移动设备菜单栏选中背景色
+      #theme-miku div[class*='hover:bg-indigo-500']:hover {
+        background-color: var(--theme-color) !important;
+      }
+
+      /* 文章浏览进度条颜色 */
+      #theme-miku .bg-indigo-600 {
         background-color: var(--theme-color) !important;
       }
       /* 当前浏览位置标题高亮颜色 */
-      #theme-MIKU .border-indigo-800 {
+      #theme-miku .border-indigo-800 {
         border-color: var(--theme-color) !important;
       }
-      #theme-MIKU .text-indigo-800 {
+      #theme-miku .text-indigo-800 {
         color: var(--theme-color) !important;
       }
-      .dark #theme-MIKU .dark\:text-indigo-400 {
+      .dark #theme-miku .dark\:text-indigo-400 {
         color: var(--theme-color) !important;
       }
-      .dark #theme-MIKU .dark\:border-indigo-400 {
+      .dark #theme-miku .dark\:border-indigo-400 {
         border-color: var(--theme-color) !important;
       }
-      .dark #theme-MIKU .dark\:border-white {
+      .dark #theme-miku .dark\:border-white {
         border-color: var(--theme-color) !important;
       }
-      /* 目录项悬浮时的字体颜�?*/
-      #theme-MIKU a[class*='hover:text-indigo-800']:hover {
+      /* 目录项悬浮时的字体颜色 */
+      #theme-miku a[class*='hover:text-indigo-800']:hover {
         color: var(--theme-color) !important;
       }
-      /* 深色模式下目录项的默认文字颜色和边框线颜�?*/
-      .dark #theme-MIKU .catalog-item {
+      /* 深色模式下目录项的默认文字颜色和边框线颜色 */
+      .dark #theme-miku .catalog-item {
         color: white !important;
         border-color: white !important;
       }
-      .dark #theme-MIKU .catalog-item:hover {
+      .dark #theme-miku .catalog-item:hover {
         color: var(--theme-color) !important;
       }
-      /* 深色模式下当前高亮标题的边框线颜�?*/
-      .dark #theme-MIKU .catalog-item.font-bold {
+      /* 深色模式下当前高亮标题的边框线颜色 */
+      .dark #theme-miku .catalog-item.font-bold {
         border-color: var(--theme-color) !important;
       }
 
-      /* 文章底部版权声明组件左侧边框线颜�?*/
-      #theme-MIKU .border-indigo-500 {
+      /* 文章底部版权声明组件左侧边框线颜色 */
+      #theme-miku .border-indigo-500 {
         border-color: var(--theme-color) !important;
       }
 
-      /* 归档页面文章列表项悬浮时左侧边框线颜�?*/
-      #theme-MIKU li[class*='hover:border-indigo-500']:hover {
+      /* 归档页面文章列表项悬浮时左侧边框线颜色 */
+      #theme-miku li[class*='hover:border-indigo-500']:hover {
         border-color: var(--theme-color) !important;
       }
 
-      /* 自定义右键菜单悬浮高亮颜�?*/
-      #theme-MIKU .hover\:bg-blue-600:hover {
+      /* 自定义右键菜单悬浮高亮颜色 */
+      #theme-miku .hover\:bg-blue-600:hover {
         background-color: var(--theme-color) !important;
       }
-      .dark #theme-MIKU li[class*='dark:hover:border-indigo-300']:hover {
+      .dark #theme-miku li[class*='dark:hover:border-indigo-300']:hover {
         border-color: var(--theme-color) !important;
       }
       /* 深色模式下，归档页面文章列表项默认状态左侧边框线颜色 */
-      .dark #theme-MIKU li[class*='dark:border-indigo-400'] {
+      .dark #theme-miku li[class*='dark:border-indigo-400'] {
         border-color: var(--theme-color) !important;
       }
       /* 深色模式下，归档页面文章标题悬浮时的文字颜色 */
-      .dark #theme-MIKU a[class*='dark:hover:text-indigo-300']:hover {
+      .dark #theme-miku a[class*='dark:hover:text-indigo-300']:hover {
         color: var(--theme-color) !important;
       }
 
       /* 设置了从上到下的渐变黑色 */
-      #theme-MIKU .header-cover::before {
+      #theme-miku .header-cover::before {
         content: '';
         position: absolute;
         top: 0;
@@ -312,3 +237,8 @@ const Style = () => {
 
 export { Style }
 
+#theme-miku { background: url('/images/bg.jpg') no-repeat center center fixed; background-size: cover; min-height: 100vh; }
+.miku-note { pointer-events: none; position: fixed; font-size: 24px; z-index: 9999; animation: floatUp 1s ease-out forwards; }
+@keyframes floatUp { 0% { opacity: 1; transform: translateY(0) scale(1); } 100% { opacity: 0; transform: translateY(-50px) scale(1.5); } }
+.elevated-card { background: rgba(255, 255, 255, 0.8) !important; backdrop-filter: blur(10px); border-radius: 12px; box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1); }
+.dark .elevated-card { background: rgba(0, 0, 0, 0.6) !important; }

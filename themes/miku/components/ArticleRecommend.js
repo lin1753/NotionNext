@@ -13,7 +13,7 @@ export default function ArticleRecommend({ recommendPosts, siteInfo }) {
   const { locale } = useGlobal()
 
   if (
-    !siteConfig('MIKU_ARTICLE_RECOMMEND', null, CONFIG) ||
+    !siteConfig('HEXO_ARTICLE_RECOMMEND', null, CONFIG) ||
     !recommendPosts ||
     recommendPosts.length === 0
   ) {
@@ -64,4 +64,3 @@ export default function ArticleRecommend({ recommendPosts, siteInfo }) {
     </div>
   )
 }
-

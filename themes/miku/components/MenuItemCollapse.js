@@ -29,7 +29,7 @@ export const MenuItemCollapse = props => {
   return (
     <>
       <div
-        className='w-full px-8 py-3 dark:hover:bg-indigo-500  hover:bg-indigo-500 hover:text-white text-left dark:bg-MIKU-black-gray'
+        className='w-full px-8 py-3 dark:hover:bg-indigo-500  hover:bg-indigo-500 hover:text-white text-left dark:bg-miku-black-gray'
         onClick={toggleShow}>
         {!hasSubMenu && (
           <SmartLink
@@ -56,7 +56,7 @@ export const MenuItemCollapse = props => {
         )}
       </div>
 
-      {/* 折叠子菜�?*/}
+      {/* 折叠子菜单 */}
       {hasSubMenu && (
         <Collapse isOpen={isOpen} onHeightChange={props.onHeightChange}>
           {link.subMenus.map((sLink, index) => {
@@ -78,4 +78,3 @@ export const MenuItemCollapse = props => {
     </>
   )
 }
-

@@ -28,8 +28,8 @@ const Header = props => {
   const { locale } = useGlobal()
   const router = useRouter()
   const [isOpen, changeShow] = useState(false)
-  const showSearchButton = siteConfig('MIKU_MENU_SEARCH', false, CONFIG)
-  const showRandomButton = siteConfig('MIKU_MENU_RANDOM', false, CONFIG)
+  const showSearchButton = siteConfig('HEXO_MENU_SEARCH', false, CONFIG)
+  const showRandomButton = siteConfig('HEXO_MENU_RANDOM', false, CONFIG)
 
   const toggleMenuOpen = () => {
     changeShow(!isOpen)
@@ -65,15 +65,16 @@ const Header = props => {
       // const textWhite = header && scrollInHeader
 
       if (scrollInHeader) {
-          nav && nav.classList.replace('bg-white/70', 'bg-transparent')
-          nav && nav.classList.replace('border', 'border-transparent')
-          nav && nav.classList.replace('drop-shadow-md', 'shadow-none')
-          nav && nav.classList.replace('dark:bg-black/60', 'bg-transparent')
-        } else {
-          nav && nav.classList.replace('bg-transparent', 'bg-white/70')
-          nav && nav.classList.replace('border-transparent', 'border')
-          nav && nav.classList.replace('shadow-none', 'drop-shadow-md')
-          nav && nav.classList.replace('bg-transparent', 'dark:bg-black/60')
+        nav && nav.classList.replace('bg-white', 'bg-none')
+        nav && nav.classList.replace('border', 'border-transparent')
+        nav && nav.classList.replace('drop-shadow-md', 'shadow-none')
+        nav && nav.classList.replace('dark:bg-miku-black-gray', 'transparent')
+      } else {
+        nav && nav.classList.replace('bg-none', 'bg-white')
+        nav && nav.classList.replace('border-transparent', 'border')
+        nav && nav.classList.replace('shadow-none', 'drop-shadow-md')
+        nav && nav.classList.replace('transparent', 'dark:bg-miku-black-gray')
+      }
 
       if (scrollInHeader) {
         nav && nav.classList.replace('text-black', 'text-white')
@@ -81,7 +82,8 @@ const Header = props => {
         nav && nav.classList.replace('text-white', 'text-black')
       }
 
-      // 导航栏不在头图里，且页面向下滚动一定程�?隐藏导航�?      const showNav =
+      // 导航栏不在头图里，且页面向下滚动一定程度 隐藏导航栏
+      const showNav =
         scrollS <= windowTop ||
         scrollS < 5 ||
         (header && scrollS <= header.clientHeight + 100)
@@ -144,12 +146,12 @@ const Header = props => {
     <div id='top-nav' className='z-40'>
       <SearchDrawer cRef={searchDrawer} slot={searchDrawerSlot} />
 
-      {/* 导航�?*/}
+      {/* 导航栏 */}
       <div
         id='sticky-nav'
         style={{ backdropFilter: 'blur(3px)' }}
         className={
-          'top-0 duration-300 transition-all  shadow-none fixed bg-transparent dark:bg-transparent dark:text-gray-200 text-black w-full z-20 transform border-transparent dark:border-transparent'
+          'top-0 duration-300 transition-all  shadow-none fixed bg-none dark:bg-miku-black-gray dark:text-gray-200 text-black w-full z-20 transform border-transparent dark:border-transparent'
         }>
         <div className='w-full flex justify-between items-center px-4 py-2'>
           <div className='flex'>
@@ -177,7 +179,7 @@ const Header = props => {
         </div>
       </div>
 
-      {/* 折叠侧边�?*/}
+      {/* 折叠侧边栏 */}
       <SideBarDrawer isOpen={isOpen} onClose={toggleSideBarClose}>
         <SideBar {...props} />
       </SideBarDrawer>
@@ -186,4 +188,3 @@ const Header = props => {
 }
 
 export default Header
-

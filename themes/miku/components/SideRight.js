@@ -12,7 +12,7 @@ import { InfoCard } from './InfoCard'
 import LatestPostsGroup from './LatestPostsGroup'
 import TagGroups from './TagGroups'
 
-const MIKURecentComments = dynamic(() => import('./MIKURecentComments'))
+const MikuRecentComments = dynamic(() => import('./MikuRecentComments'))
 const FaceBookPage = dynamic(
   () => {
     let facebook = <></>
@@ -27,7 +27,8 @@ const FaceBookPage = dynamic(
 )
 
 /**
- * MIKU主题右侧�? * @param {*} props
+ * Miku主题右侧栏
+ * @param {*} props
  * @returns
  */
 export default function SideRight(props) {
@@ -64,7 +65,7 @@ export default function SideRight(props) {
         )}
 
         <InfoCard {...props} />
-        {siteConfig('MIKU_WIDGET_ANALYTICS', null, CONFIG) && (
+        {siteConfig('HEXO_WIDGET_ANALYTICS', null, CONFIG) && (
           <AnalyticsCard {...props} />
         )}
 
@@ -84,7 +85,7 @@ export default function SideRight(props) {
             <TagGroups tags={tags} currentTag={currentTag} />
           </Card>
         )}
-        {siteConfig('MIKU_WIDGET_LATEST_POSTS', null, CONFIG) &&
+        {siteConfig('HEXO_WIDGET_LATEST_POSTS', null, CONFIG) &&
           latestPosts &&
           latestPosts.length > 0 && (
             <Card>
@@ -95,7 +96,7 @@ export default function SideRight(props) {
         <Announcement post={notice} />
 
         {siteConfig('COMMENT_WALINE_SERVER_URL') &&
-          siteConfig('COMMENT_WALINE_RECENT') && <MIKURecentComments />}
+          siteConfig('COMMENT_WALINE_RECENT') && <MikuRecentComments />}
 
         {rightAreaSlot}
         <FaceBookPage />
@@ -104,4 +105,3 @@ export default function SideRight(props) {
     </div>
   )
 }
-

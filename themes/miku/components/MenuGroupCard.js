@@ -17,19 +17,19 @@ const MenuGroupCard = props => {
       name: locale.COMMON.ARTICLE,
       href: '/archive',
       slot: archiveSlot,
-      show: siteConfig('MIKU_MENU_ARCHIVE', null, CONFIG)
+      show: siteConfig('HEXO_MENU_ARCHIVE', null, CONFIG)
     },
     {
       name: locale.COMMON.CATEGORY,
       href: '/category',
       slot: categorySlot,
-      show: siteConfig('MIKU_MENU_CATEGORY', null, CONFIG)
+      show: siteConfig('HEXO_MENU_CATEGORY', null, CONFIG)
     },
     {
       name: locale.COMMON.TAGS,
       href: '/tag',
       slot: tagSlot,
-      show: siteConfig('MIKU_MENU_TAG', null, CONFIG)
+      show: siteConfig('HEXO_MENU_TAG', null, CONFIG)
     }
   ]
 
@@ -68,4 +68,3 @@ const MenuGroupCard = props => {
   )
 }
 export default MenuGroupCard
-
