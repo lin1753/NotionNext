@@ -1,29 +1,44 @@
-import { AdSlot } from '@/components/GoogleAdsense'
-import Live2D from '@/components/Live2D'
-import Catalog from './Catalog'
-import WWAds from '@/components/WWAds'
+import LazyImage from '@/components/LazyImage'
+import { siteConfig } from '@/lib/config'
+import { useRouter } from 'next/router'
+import MenuGroupCard from './MenuGroupCard'
+import { MenuListSide } from './MenuListSide'
 
 /**
- * 侧边栏
- * @param {*} props
- * @returns
+ * 侧边抽屉
+ * @param tags
+ * @param currentTag
+ * @returns {JSX.Element}
+ * @constructor
  */
-export default function SideBar(props) {
+const SideBar = props => {
+  const { siteInfo } = props
+  const router = useRouter()
   return (
-    <div className='space-y-6'>
-      <Catalog {...props} />
-
-      <div className='glass-card p-4 rounded-2xl bg-white/70 dark:bg-black/60 backdrop-blur-md border border-white/30 dark:border-white/10'>
-        <Live2D />
+    <div id='side-bar'>
+      <div className='h-52 w-full flex justify-center'>
+        <div>
+          <div
+            onClick={() => {
+              router.push('/')
+            }}
+            className='justify-center items-center flex hover:rotate-45 py-6 hover:scale-105 dark:text-gray-100  transform duration-200 cursor-pointer'>
+            {/* 头像 */}
+            <LazyImage
+              src={siteInfo?.icon}
+              className='rounded-full'
+              width={80}
+              alt={siteConfig('AUTHOR')}
+            />
+          </div>
+          {/* 总览 */}
+          <MenuGroupCard {...props} />
+        </div>
       </div>
-
-      <div className='glass-card p-4 rounded-2xl bg-white/70 dark:bg-black/60 backdrop-blur-md border border-white/30 dark:border-white/10'>
-        <AdSlot />
-      </div>
-
-      <div className='glass-card p-4 rounded-2xl bg-white/70 dark:bg-black/60 backdrop-blur-md border border-white/30 dark:border-white/10'>
-        <WWAds orientation="vertical" className="w-full" />
-      </div>
+      {/* 侧拉抽屉的菜单 */}
+      <MenuListSide {...props} />
     </div>
   )
 }
+
+export default SideBar

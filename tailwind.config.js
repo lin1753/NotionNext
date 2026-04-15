@@ -39,6 +39,16 @@ module.exports = {
           'black-gray': '#101414',
           'light-gray': '#e5e5e5'
         },
+        miku: {
+          'background-gray': '#f5f5f5',
+          'black-gray': '#101414',
+          'light-gray': '#e5e5e5'
+        },
+        MIKU: {
+          'background-gray': '#f5f5f5',
+          'black-gray': '#101414',
+          'light-gray': '#e5e5e5'
+        },
         // black: '#212b36',
         'dark-700': '#090e34b3',
         dark: {

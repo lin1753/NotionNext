@@ -29,19 +29,15 @@ export const MenuItemCollapse = props => {
   return (
     <>
       <div
-        className='w-full px-8 py-3 text-left border-b border-white/20 dark:bg-black/40 dark:border-white/10 bg-white/60 backdrop-blur-sm'
+        className='w-full px-8 py-3 dark:hover:bg-indigo-500  hover:bg-indigo-500 hover:text-white text-left dark:bg-MIKU-black-gray'
         onClick={toggleShow}>
         {!hasSubMenu && (
           <SmartLink
             href={link?.href}
             target={link?.target}
-            className='items-center flex justify-between pl-2 pr-4 dark:text-gray-200 no-underline tracking-widest pb-1'>
-            <span className='text-cyan-600 dark:text-cyan-300 hover:text-cyan-500 transition-all items-center duration-200'>
-              {link?.icon && (
-                <span className='mr-2'>
-                  <i className={link.icon} />
-                </span>
-              )}
+            className=' font-extralight flex justify-between pl-2 pr-4 dark:text-gray-200 no-underline tracking-widest pb-1'>
+            <span className=' transition-all items-center duration-200'>
+              {link?.icon && <i className={link.icon + ' mr-4'} />}
               {link?.name}
             </span>
           </SmartLink>
@@ -49,36 +45,28 @@ export const MenuItemCollapse = props => {
         {hasSubMenu && (
           <div
             onClick={hasSubMenu ? toggleOpenSubMenu : null}
-            className='items-center flex justify-between pl-2 pr-4 cursor-pointer dark:text-gray-200 no-underline tracking-widest pb-1'>
-            <span className='text-cyan-600 dark:text-cyan-300 hover:text-cyan-500 transition-all items-center duration-200'>
-              {link?.icon && (
-                <span className='mr-2'>
-                  <i className={link.icon} />
-                </span>
-              )}
+            className='font-extralight flex items-center justify-between pl-2 pr-4 cursor-pointer  dark:text-gray-200 no-underline tracking-widest pb-1'>
+            <span className='transition-all items-center duration-200'>
+              {link?.icon && <i className={link.icon + ' mr-4'} />}
               {link?.name}
             </span>
             <i
-              className={`px-2 fa fa-plus transition-all duration-200 ${isOpen && 'rotate-45'} text-gray-400`}></i>
+              className={`px-2 fas fa-chevron-left transition-all duration-200 ${isOpen ? '-rotate-90' : ''} text-gray-400`}></i>
           </div>
         )}
       </div>
 
-      {/* 折叠子菜单 */}
+      {/* 折叠子菜�?*/}
       {hasSubMenu && (
         <Collapse isOpen={isOpen} onHeightChange={props.onHeightChange}>
           {link.subMenus.map((sLink, index) => {
             return (
               <div
                 key={index}
-                className='dark:bg-black/60 text-left px-10 justify-start text-cyan-600 dark:text-cyan-300 bg-cyan-50/30 hover:bg-cyan-50/60 dark:hover:bg-white/10 tracking-widest transition-all duration-200 border-b border-white/20 dark:border-white/10 py-3 pr-6'>
+                className='dark:hover:bg-indigo-500 hover:bg-indigo-500 hover:text-white dark:bg-black dark:text-gray-200 text-left px-10 justify-start bg-gray-50 tracking-widest transition-all duration-200  py-3 pr-6'>
                 <SmartLink href={sLink.href} target={link?.target}>
-                  <span className='ml-4 text-sm'>
-                    {sLink?.icon && (
-                      <span className='mr-2 w-4'>
-                        <i className={sLink.icon} />
-                      </span>
-                    )}
+                  <span className='text-sm ml-4 whitespace-nowrap'>
+                    {link?.icon && <i className={sLink.icon + ' mr-2'} />}{' '}
                     {sLink.title}
                   </span>
                 </SmartLink>
@@ -90,3 +78,4 @@ export const MenuItemCollapse = props => {
     </>
   )
 }
+

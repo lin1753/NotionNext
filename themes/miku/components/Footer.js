@@ -1,13 +1,9 @@
 import { BeiAnGongAn } from '@/components/BeiAnGongAn'
-import DarkModeButton from '@/components/DarkModeButton'
+import BeiAnSite from '@/components/BeiAnSite'
+import PoweredBy from '@/components/PoweredBy'
 import { siteConfig } from '@/lib/config'
 
-/**
- * 页脚
- * @param {*} props
- * @returns
- */
-export default function Footer(props) {
+const Footer = ({ title }) => {
   const d = new Date()
   const currentYear = d.getFullYear()
   const since = siteConfig('SINCE')
@@ -15,35 +11,36 @@ export default function Footer(props) {
     parseInt(since) < currentYear ? since + '-' + currentYear : currentYear
 
   return (
-    <footer className='relative w-full bg-black/80 backdrop-blur-md px-6 border-t'>
-      <DarkModeButton className='text-center pt-4' />
-
-      <div className='text-yellow-300 container mx-auto max-w-4xl py-6 md:flex flex-wrap md:flex-no-wrap md:justify-between items-center text-sm'>
-        <div className='text-center'>
-          &copy;{`${copyrightDate}`} {siteConfig('AUTHOR')}. All rights
-          reserved.
-        </div>
-        <div className='md:p-0 text-center md:text-right text-xs'>
-          {/* 右侧链接 */}
-          {/* <a href="#" className="text-black no-underline hover:underline">Privacy Policy</a> */}
-          {siteConfig('BEI_AN') && (
-            <a
-              href={siteConfig('BEI_AN_LINK')}
-              className='no-underline hover:underline ml-4'>
-              {siteConfig('BEI_AN')}
-            </a>
-          )}
-          <BeiAnGongAn />
-          <span className='no-underline ml-4'>
-            Powered by
-            <a
-              href='https://github.com/tangly1024/NotionNext'
-              className=' hover:underline'>
-              NotionNext {siteConfig('VERSION')}
-            </a>
-          </span>
-        </div>
-      </div>
+    <footer className='relative z-10 dark:bg-black flex-shrink-0 bg-MIKU-light-gray justify-center text-center m-auto w-full leading-6  text-gray-600 dark:text-gray-100 text-sm p-6'>
+      {/* <DarkModeButton/> */}
+      <i className='fas fa-copyright' /> {`${copyrightDate}`}
+      <span>
+        <i className='mx-1 animate-pulse fas fa-heart' />
+        <a
+          href={siteConfig('LINK')}
+          className='underline font-bold  dark:text-gray-300 '>
+          {siteConfig('AUTHOR')}
+        </a>
+        .<br />
+        <BeiAnSite />
+        <BeiAnGongAn />
+        <span className='hidden busuanzi_container_site_pv'>
+          <i className='fas fa-eye' />
+          <span className='px-1 busuanzi_value_site_pv'> </span>
+        </span>
+        <span className='pl-2 hidden busuanzi_container_site_uv'>
+          <i className='fas fa-users' />
+          <span className='px-1 busuanzi_value_site_uv'> </span>
+        </span>
+        <h1 className='text-xs pt-4 text-light-400 dark:text-gray-400'>
+          {title} {siteConfig('BIO') && <>|</>} {siteConfig('BIO')}
+        </h1>
+        <PoweredBy className='justify-center' />
+      </span>
+      <br />
     </footer>
   )
 }
+
+export default Footer
+
