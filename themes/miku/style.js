@@ -231,14 +231,14 @@ const Style = () => {
         scrollbar-width: thin;
         scrollbar-color: var(--theme-color) transparent;
       }
+
+      #theme-miku { background: url('/images/bg.jpg') no-repeat center center fixed; background-size: cover; min-height: 100vh; }
+      .miku-note { pointer-events: none; position: fixed; font-size: 24px; z-index: 9999; animation: floatUp 1s ease-out forwards; }
+      @keyframes floatUp { 0% { opacity: 1; transform: translateY(0) scale(1); } 100% { opacity: 0; transform: translateY(-50px) scale(1.5); } }
+      .elevated-card { background: rgba(255, 255, 255, 0.8) !important; backdrop-filter: blur(10px); border-radius: 12px; box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1); }
+      .dark .elevated-card { background: rgba(0, 0, 0, 0.6) !important; }
     `}</style>
   )
 }
 
 export { Style }
-
-#theme-miku { background: url('/images/bg.jpg') no-repeat center center fixed; background-size: cover; min-height: 100vh; }
-.miku-note { pointer-events: none; position: fixed; font-size: 24px; z-index: 9999; animation: floatUp 1s ease-out forwards; }
-@keyframes floatUp { 0% { opacity: 1; transform: translateY(0) scale(1); } 100% { opacity: 0; transform: translateY(-50px) scale(1.5); } }
-.elevated-card { background: rgba(255, 255, 255, 0.8) !important; backdrop-filter: blur(10px); border-radius: 12px; box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1); }
-.dark .elevated-card { background: rgba(0, 0, 0, 0.6) !important; }
