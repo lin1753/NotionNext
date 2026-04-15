@@ -26,7 +26,6 @@ import Hero from './components/Hero'
 import PostHero from './components/PostHero'
 import RightFloatArea from './components/RightFloatArea'
 import SearchNav from './components/SearchNav'
-import SideRight from './components/SideRight'
 import SlotBar from './components/SlotBar'
 import TagItemMini from './components/TagItemMini'
 import TocDrawer from './components/TocDrawer'
@@ -192,9 +191,6 @@ const LayoutBase = props => {
                 {children}
               </Transition>
             </div>
-
-            {/* 右侧栏 */}
-            <SideRight {...props} />
           </div>
         </main>
 
