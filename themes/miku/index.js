@@ -85,7 +85,7 @@ const LayoutBase = props => {
   const searchModal = useRef(null)
   const cursorTrailRef = useRef(null)
 
-  // Miku 鼠标轨迹动画
+  // Miku 鼠标轨迹与点击音游特效
   useEffect(() => {
     if (!isBrowser) return
 
@@ -99,9 +99,9 @@ const LayoutBase = props => {
       const distance = Math.hypot(e.clientX - lastX, e.clientY - lastY)
       if (distance > 25) {
         throttle = true
-        // 随机音符
+        // 随机音符（加入了粉色）
         const noteShapes = ['♪', '♫', '♩', '♬']
-        const noteColors = ['#00C2D1', '#0A84FF', '#7EE8D5']
+        const noteColors = ['#00C2D1', '#0A84FF', '#7EE8D5', '#FF69B4']
 
         const note = document.createElement('div')
         note.className = 'miku-note'
@@ -109,17 +109,27 @@ const LayoutBase = props => {
         note.style.left = e.clientX + 'px'
         note.style.top = e.clientY + 'px'
         note.style.color = noteColors[Math.floor(Math.random() * noteColors.length)]
-        note.style.transform = `rotate(${Math.random() * 30 - 15}deg)`
-
+        // 注：动态不规则旋转与上浮将通过 JavaScript Web Animations API 实现
+        
         if (cursorTrailRef.current) {
             cursorTrailRef.current.appendChild(note)
         }
+
+        // 不规则旋转与漂浮动画
+        note.animate([
+          { opacity: 1, transform: `translate(0, 0) scale(1) rotate(${Math.random() * 60 - 30}deg)` },
+          { opacity: 0, transform: `translate(${Math.random() * 60 - 30}px, -${60 + Math.random() * 40}px) scale(${1.2 + Math.random() * 0.5}) rotate(${Math.random() * 360 - 180}deg)` }
+        ], { 
+          duration: 800 + Math.random() * 400, 
+          easing: 'ease-out', 
+          fill: 'forwards' 
+        });
 
         setTimeout(() => {
           if (note && note.parentNode) {
               note.remove()
           }
-        }, 1000)
+        }, 1200)
 
         lastX = e.clientX
         lastY = e.clientY
@@ -130,10 +140,103 @@ const LayoutBase = props => {
       }
     }
 
+    // 音游风格点击反馈特效 (如世界计划 / Bang Dream!)
+    const handleClick = (e) => {
+      const hitTypes = [
+        { text: 'PERFECT', color: '#FFD700', shadow: '#FFA500' }, 
+        { text: 'GREAT', color: '#00FA9A', shadow: '#32CD32' },   
+        { text: 'MIKU', color: '#39C5BB', shadow: '#00C2D1' },     
+        { text: 'FEVER', color: '#FF69B4', shadow: '#FF1493' }     
+      ];
+      const hit = hitTypes[Math.floor(Math.random() * hitTypes.length)];
+
+      // 1. 扩散光圈
+      const ring = document.createElement('div');
+      ring.style.position = 'fixed';
+      ring.style.left = (e.clientX - 35) + 'px';
+      ring.style.top = (e.clientY - 35) + 'px';
+      ring.style.width = '70px';
+      ring.style.height = '70px';
+      ring.style.border = `4px solid ${hit.color}`;
+      ring.style.borderRadius = '50%';
+      ring.style.pointerEvents = 'none';
+      ring.style.zIndex = 9998;
+      ring.style.boxShadow = `0 0 10px ${hit.shadow}, inset 0 0 10px ${hit.shadow}`;
+      
+      if (cursorTrailRef.current) {
+          cursorTrailRef.current.appendChild(ring);
+      }
+
+      ring.animate([
+          { transform: 'scale(0.5)', opacity: 1 },
+          { transform: 'scale(2.5)', opacity: 0 }
+      ], { duration: 400, easing: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)' });
+      setTimeout(() => { if (ring.parentNode) ring.remove() }, 400);
+
+      // 2. 浮动连击文字
+      const text = document.createElement('div');
+      text.innerText = hit.text;
+      text.style.position = 'fixed';
+      text.style.left = (e.clientX - 50) + 'px';
+      text.style.top = (e.clientY - 20) + 'px';
+      text.style.color = hit.color;
+      text.style.fontSize = '24px';
+      text.style.fontWeight = '900';
+      text.style.fontStyle = 'italic';
+      text.style.pointerEvents = 'none';
+      text.style.zIndex = 9999;
+      text.style.textShadow = `0px 0px 5px ${hit.shadow}, 2px 2px 2px #fff`;
+      text.style.textAlign = 'center';
+      text.style.width = '100px';
+      
+      if (cursorTrailRef.current) {
+          cursorTrailRef.current.appendChild(text);
+      }
+
+      text.animate([
+          { transform: 'translateY(0) scale(0.8)', opacity: 1 },
+          { transform: 'translateY(-50px) scale(1.2)', opacity: 0 }
+      ], { duration: 600, easing: 'ease-out' });
+      setTimeout(() => { if (text.parentNode) text.remove() }, 600);
+
+      // 3. 散落粒子
+      for(let i=0; i<6; i++) {
+          const p = document.createElement('div');
+          p.style.position = 'fixed';
+          p.style.left = e.clientX + 'px';
+          p.style.top = e.clientY + 'px';
+          p.style.width = '8px';
+          p.style.height = '8px';
+          p.style.backgroundColor = (Math.random() > 0.5) ? hit.color : '#fff';
+          p.style.borderRadius = '50%';
+          p.style.pointerEvents = 'none';
+          p.style.zIndex = 9999;
+          p.style.boxShadow = `0 0 5px ${hit.shadow}`;
+          
+          if (cursorTrailRef.current) {
+              cursorTrailRef.current.appendChild(p);
+          }
+
+          const angle = Math.random() * Math.PI * 2;
+          const distance = 40 + Math.random() * 60;
+          const tx = Math.cos(angle) * distance;
+          const ty = Math.sin(angle) * distance;
+
+          p.animate([
+              { transform: 'translate(0, 0) scale(1)', opacity: 1 },
+              { transform: `translate(${tx}px, ${ty}px) scale(0)`, opacity: 0 }
+          ], { duration: 400 + Math.random()*200, easing: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)' });
+          
+          setTimeout(() => { if (p.parentNode) p.remove() }, 600);
+      }
+    }
+
     document.addEventListener('mousemove', handleMouseMove)
+    document.addEventListener('click', handleClick)
 
     return () => {
       document.removeEventListener('mousemove', handleMouseMove)
+      document.removeEventListener('click', handleClick)
     }
   }, [])
 
