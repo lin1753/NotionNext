@@ -12,7 +12,8 @@ export const MenuItemDrop = ({ link }) => {
   return (
     <div
       onMouseOver={() => changeShow(true)}
-      onMouseOut={() => changeShow(false)}>
+      onMouseOut={() => changeShow(false)}
+      className='relative'>
       {!hasSubMenu && (
         <SmartLink
           href={link?.href}
@@ -39,6 +40,10 @@ export const MenuItemDrop = ({ link }) => {
             {link?.name}
             <i
               className={`px-2 fas fa-chevron-down duration-500 transition-all ${show ? ' rotate-180' : ''}`}></i>
+            {/* 主菜单下方的安全区域 */}
+            {show && (
+              <div className='absolute w-full h-8 -bottom-8 left-0 bg-transparent z-30'></div>
+            )}
           </div>
         </>
       )}
