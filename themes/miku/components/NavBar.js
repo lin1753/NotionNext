@@ -36,9 +36,9 @@ export default function NavBar(props) {
     <nav className='w-full bg-white/70 dark:bg-black/60 md:pt-0 relative z-20 backdrop-blur-md border-t border-white/30 dark:border-white/10'>
       <div
         id='nav-bar-inner'
-        className='h-12 mx-auto max-w-9/10 justify-between items-center text-sm md:text-md md:justify-start'>
+        className='flex relative h-12 mx-auto max-w-9/10 justify-between items-center text-sm md:text-md md:justify-start'>
         {/* 左侧菜单 */}
-        <div className='h-full w-full float-left text-center md:text-left flex flex-wrap items-stretch md:justify-start md:items-start space-x-4'>
+        <div className='h-full w-full text-center md:text-left flex flex-wrap items-stretch md:justify-start md:items-start space-x-4'>
           {showSearchInput && (
             <input
               autoFocus
@@ -55,7 +55,7 @@ export default function NavBar(props) {
           {!showSearchInput && <MenuList {...props} />}
         </div>
 
-        <div className='absolute right-12 h-full text-center px-2 flex items-center text-cyan-500 cursor-pointer'>
+        <div className='absolute right-0 h-full text-center px-2 flex items-center text-cyan-500 cursor-pointer'>
           {/* <!-- extra links --> */}
           <i
             className={

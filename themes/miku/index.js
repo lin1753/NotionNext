@@ -164,14 +164,6 @@ const LayoutBase = props => {
             </Transition>
             <AdSlot type='native' />
           </div>
-
-          {fullWidth ? null : (
-            <div
-              id='right-sidebar'
-              className='hidden xl:block flex-none sticky top-8 w-96 border-l dark:border-gray-800 pl-12 border-gray-100'>
-              <SideBar {...props} />
-            </div>
-          )}
         </div>
 
         <div className='fixed right-4 bottom-4 z-20'>
