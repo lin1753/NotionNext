@@ -98,7 +98,10 @@ const Style = () => {
 
     /* Basic styles */
     * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
+    html { 
+      scroll-behavior: smooth;
+      background-color: transparent !important; 
+    }
 
     body {
       margin: 0;
@@ -106,6 +109,7 @@ const Style = () => {
       font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
       line-height: 1.6;
       color: #333333;
+      background-color: transparent !important;
     }
 
     /* Background - Full screen wallpaper */
@@ -281,6 +285,26 @@ const Style = () => {
 
     @media (max-width: 768px) {
       #theme-miku article { padding: 20px; }
+    }
+/* miku-note css used by cursor trail */
+    .miku-note {
+      position: fixed;
+      pointer-events: none;
+      font-size: 20px;
+      color: #00bcd4;
+      animation: note-anim 1.5s ease-out forwards;
+      z-index: 9999;
+    }
+
+    @keyframes note-anim {
+      0% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+      100% {
+        opacity: 0;
+        transform: translateY(-50px) scale(0.5);
+      }
     }
   `}</style>
 }

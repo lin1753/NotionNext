@@ -16,9 +16,9 @@ export const BlogItem = props => {
     siteConfig('POST_LIST_PREVIEW', false, NOTION_CONFIG) && post.blockMap
 
   return (
-    <div
+    <article
       key={post.id}
-      className='h-42 my-6 pb-12 border-b border-white/20 dark:border-white/10'>
+      className='elevated-card my-6 pb-12 border-b border-white/20 dark:border-white/10'>
       {/* 文章标题 */}
 
       <div className='flex'>
@@ -36,7 +36,7 @@ export const BlogItem = props => {
           )}
         </div>
 
-        <article className='article-info'>
+        <div className='article-info'>
           <h2 className='mb-2'>
             <SmartLink
               href={post.href}
@@ -109,7 +109,7 @@ export const BlogItem = props => {
               </div>
             )}
           </main>
-        </article>
+        </div>
       </div>
 
       <div className='block'>
@@ -120,6 +120,6 @@ export const BlogItem = props => {
           <i className='fa-solid fa-angle-right align-middle'></i>
         </SmartLink>
       </div>
-    </div>
+    </article>
   )
 }

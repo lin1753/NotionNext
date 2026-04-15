@@ -69,6 +69,60 @@ const LayoutBase = props => {
   const { children, slotTop } = props
   const { onLoading, fullWidth } = useGlobal()
   const searchModal = useRef(null)
+  const cursorTrailRef = useRef(null)
+
+  // 鼠标轨迹动画
+  useEffect(() => {
+    if (!isBrowser) return
+
+    let lastX = 0
+    let lastY = 0
+    let animationFrameId
+    let throttle = false
+
+    const handleMouseMove = (e) => {
+      if (throttle) return
+      
+      const distance = Math.hypot(e.clientX - lastX, e.clientY - lastY)
+      if (distance > 25) {
+        throttle = true
+        // 随机音符
+        const noteShapes = ['♪', '♫', '♬', '♩']
+        const noteColors = ['#00C2D1', '#0A84FF', '#7EE8D5']
+
+        const note = document.createElement('div')
+        note.className = 'miku-note'
+        note.innerHTML = noteShapes[Math.floor(Math.random() * noteShapes.length)]
+        note.style.left = e.clientX + 'px'
+        note.style.top = e.clientY + 'px'
+        note.style.color = noteColors[Math.floor(Math.random() * noteColors.length)]
+        note.style.transform = `rotate(${Math.random() * 30 - 15}deg)`
+
+        if (cursorTrailRef.current) {
+            cursorTrailRef.current.appendChild(note)
+        }
+
+        setTimeout(() => {
+          if (note && note.parentNode) {
+              note.remove()
+          }
+        }, 1000)
+
+        lastX = e.clientX
+        lastY = e.clientY
+
+        setTimeout(() => {
+          throttle = false
+        }, 50)
+      }
+    }
+
+    document.addEventListener('mousemove', handleMouseMove)
+
+    return () => {
+      document.removeEventListener('mousemove', handleMouseMove)
+    }
+  }, [])
 
   return (
     <ThemeGlobalMiku.Provider value={{ searchModal }}>
@@ -128,6 +182,9 @@ const LayoutBase = props => {
         <AlgoliaSearchModal cRef={searchModal} {...props} />
 
         <Footer {...props} />
+
+        {/* 鼠标轨迹容器 */}
+        <div ref={cursorTrailRef} className="cursor-trail" />
 
       </div>
     </ThemeGlobalMiku.Provider>
@@ -234,10 +291,10 @@ const LayoutSlug = props => {
           {/* <AdSlot type={'in-article'} /> */}
           <WWAds orientation='horizontal' className='w-full' />
 
-          <div id='article-wrapper'>
+          <article id='article-wrapper' className='elevated-card'>
             {/* Notion文章主体 */}
             {!lock && <NotionPage post={post} />}
-          </div>
+          </article>
 
           {/* 分享 */}
           <ShareBar post={post} />
