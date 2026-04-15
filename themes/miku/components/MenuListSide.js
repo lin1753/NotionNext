@@ -53,6 +53,18 @@ export const MenuListSide = props => {
     links = customMenu
   }
 
+   
+
+  
+  if (links && links.length > 0) { 
+    links = links.filter(l => !["友情链接", "友情连接", "建站教程", "English", "随便看看"].includes(l?.name)); 
+    const archIdx = links.findIndex(l => l?.name === "往期整理"); 
+    if (archIdx !== -1) { 
+      const subs = links[archIdx]?.subMenus || []; 
+      links.splice(archIdx, 1, ...subs); 
+    } 
+  }
+
   if (!links || links.length === 0) {
     return null
   }
