@@ -37,7 +37,7 @@ const MyApp = ({ Component, pageProps }) => {
   const theme = useMemo(() => {
     return (
       getQueryParam(route.asPath, 'theme') ||
-      // pageProps?.NOTION_CONFIG?.THEME || // 注释掉Notion配置中的主题覆盖，强制使用本地代码配置的主题
+      pageProps?.NOTION_CONFIG?.THEME ||
       BLOG.THEME
     )
   }, [route])
