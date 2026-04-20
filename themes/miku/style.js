@@ -234,8 +234,73 @@ const Style = () => {
 
       .miku-note { pointer-events: none; position: fixed; font-size: 24px; z-index: 9999; animation: floatUp 1s ease-out forwards; }
       @keyframes floatUp { 0% { opacity: 1; transform: translateY(0) scale(1); } 100% { opacity: 0; transform: translateY(-50px) scale(1.5); } }
-      .elevated-card { background: rgba(255, 255, 255, 0.8) !important; backdrop-filter: blur(10px); border-radius: 12px; box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1); }
-      .dark .elevated-card { background: rgba(0, 0, 0, 0.6) !important; }
+
+      /* ===== Material Design 3 风格卡片 (Glass Material) ===== */
+      .glass-card {
+        background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(245, 248, 255, 0.65)) !important;
+        backdrop-filter: blur(20px) saturate(180%);
+        -webkit-backdrop-filter: blur(20px) saturate(180%);
+        border-radius: 16px;
+        border: 1px solid rgba(255, 255, 255, 0.8) !important;
+        box-shadow:
+            0 6px 16px rgba(0, 0, 0, 0.06),
+            0 2px 4px rgba(0, 0, 0, 0.04),
+            inset 0 1px 0 rgba(255, 255, 255, 1),
+            inset 1px 0 0 rgba(255, 255, 255, 0.8);
+        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      }
+      .glass-card:hover {
+        box-shadow:
+            0 15px 30px rgba(0, 194, 209, 0.1),
+            0 8px 15px rgba(0, 0, 0, 0.05),
+            inset 0 1px 0 rgba(255, 255, 255, 1);
+        transform: translateY(-4px);
+        border: 1px solid rgba(0, 194, 209, 0.3) !important;
+        background: linear-gradient(135deg, rgba(255, 255, 255, 1), rgba(240, 250, 255, 0.85)) !important;
+      }
+      .dark .glass-card {
+        background: linear-gradient(135deg, rgba(30, 30, 30, 0.8), rgba(20, 20, 20, 0.6)) !important;
+        border: 1px solid rgba(255, 255, 255, 0.1) !important;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+      }
+
+      /* ===== 高亮卡片（文章卡片）- MD3 Elevated Card ===== */
+      .elevated-card {
+        background: linear-gradient(145deg, rgba(255, 255, 255, 0.95), rgba(240, 245, 250, 0.7)) !important;
+        backdrop-filter: blur(24px) saturate(180%);
+        -webkit-backdrop-filter: blur(24px) saturate(180%);
+        border-radius: 20px;
+        border-top: 1px solid rgba(255, 255, 255, 1) !important;
+        border-left: 1px solid rgba(255, 255, 255, 1) !important;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.4) !important;
+        border-right: 1px solid rgba(255, 255, 255, 0.4) !important;
+        box-shadow:
+            0 10px 25px rgba(0, 0, 0, 0.08),
+            0 4px 10px rgba(0, 194, 209, 0.05),
+            inset 0 1px 0 rgba(255, 255, 255, 0.9);
+        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      }
+      .elevated-card:hover {
+        box-shadow:
+            0 20px 40px rgba(0, 194, 209, 0.15),
+            0 8px 20px rgba(0, 0, 0, 0.08),
+            inset 0 1px 0 rgba(255, 255, 255, 1);
+        transform: translateY(-6px);
+        border-color: rgba(0, 194, 209, 0.5) !important;
+        background: linear-gradient(145deg, rgba(255, 255, 255, 1), rgba(235, 252, 255, 0.9)) !important;
+      }
+      .dark .elevated-card {
+        background: linear-gradient(145deg, rgba(40, 40, 40, 0.8), rgba(25, 25, 25, 0.6)) !important;
+        border-top: 1px solid rgba(255, 255, 255, 0.1) !important;
+        border-left: 1px solid rgba(255, 255, 255, 0.1) !important;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.8) !important;
+        border-right: 1px solid rgba(0, 0, 0, 0.8) !important;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+      }
+      .dark .elevated-card:hover {
+        border-color: rgba(0, 194, 209, 0.5) !important;
+        background: linear-gradient(145deg, rgba(50, 50, 50, 0.8), rgba(30, 30, 30, 0.7)) !important;
+      }
     `}</style>
   )
 }

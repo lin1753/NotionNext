@@ -44,45 +44,62 @@
             padding: 20px;
         }
 
-        /* ===== Material Design 3 风格卡片 ===== */
+        /* ===== Material Design 3 风格卡片 (Glass Material) ===== */
         .glass-card {
-            background: rgba(255, 255, 255, 0.98);
+            /* 使用带有微弱灰度/蓝调的渐变背景，与纯白背景拉开差距 */
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(245, 248, 255, 0.65));
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
             border-radius: 16px;
-            /* MD3 Elevation 1 - 细微阴影 */
+            /* 1px 的外边框，半透明模拟真实玻璃切边 */
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            /* 重点：增加深色环境阴影 + 纯白色的内发光（光线打在玻璃边缘） */
             box-shadow:
-                0 1px 2px rgba(0, 0, 0, 0.03),
-                0 2px 4px rgba(0, 0, 0, 0.02),
-                0 4px 8px rgba(0, 0, 0, 0.02);
-            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+                0 6px 16px rgba(0, 0, 0, 0.06),
+                0 2px 4px rgba(0, 0, 0, 0.04),
+                inset 0 1px 0 rgba(255, 255, 255, 1),
+                inset 1px 0 0 rgba(255, 255, 255, 0.8);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
         .glass-card:hover {
-            /* MD3 Elevation 2 - 悬停提升 */
+            /* 悬停时：加大阴影扩散范围，轻微上浮，并且在环境中映出微弱的主题色(青色) */
             box-shadow:
-                0 2px 4px rgba(0, 0, 0, 0.04),
-                0 4px 8px rgba(0, 0, 0, 0.03),
-                0 8px 16px rgba(0, 0, 0, 0.03);
-            transform: translateY(-1px);
+                0 15px 30px rgba(0, 194, 209, 0.1),
+                0 8px 15px rgba(0, 0, 0, 0.05),
+                inset 0 1px 0 rgba(255, 255, 255, 1);
+            transform: translateY(-4px);
+            border: 1px solid rgba(0, 194, 209, 0.3);
+            background: linear-gradient(135deg, rgba(255, 255, 255, 1), rgba(240, 250, 255, 0.85));
         }
 
         /* ===== 高亮卡片（文章卡片）- MD3 Elevated Card ===== */
         .elevated-card {
-            background: rgba(255, 255, 255, 0.98);
+            background: linear-gradient(145deg, rgba(255, 255, 255, 0.95), rgba(240, 245, 250, 0.7));
+            backdrop-filter: blur(24px) saturate(180%);
+            -webkit-backdrop-filter: blur(24px) saturate(180%);
             border-radius: 20px;
-            /* 多层次的 elevation */
+            /* 左上角强反光，右下角弱反光 */
+            border-top: 1px solid rgba(255, 255, 255, 1);
+            border-left: 1px solid rgba(255, 255, 255, 1);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+            border-right: 1px solid rgba(255, 255, 255, 0.4);
+            /* 更深的基础层级位移阴影 */
             box-shadow:
-                0 1px 3px rgba(0, 0, 0, 0.05),
-                0 4px 12px rgba(0, 194, 209, 0.08),
-                0 8px 24px rgba(0, 0, 0, 0.04);
-            border: 1px solid rgba(0, 194, 209, 0.06);
+                0 10px 25px rgba(0, 0, 0, 0.08),
+                0 4px 10px rgba(0, 194, 209, 0.05),
+                inset 0 1px 0 rgba(255, 255, 255, 0.9);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
         .elevated-card:hover {
             box-shadow:
-                0 2px 6px rgba(0, 0, 0, 0.06),
-                0 8px 20px rgba(0, 194, 209, 0.12),
-                0 16px 32px rgba(0, 0, 0, 0.06);
-            transform: translateY(-2px);
+                0 20px 40px rgba(0, 194, 209, 0.15),
+                0 8px 20px rgba(0, 0, 0, 0.08),
+                inset 0 1px 0 rgba(255, 255, 255, 1);
+            transform: translateY(-6px);
+            border-color: rgba(0, 194, 209, 0.5);
+            background: linear-gradient(145deg, rgba(255, 255, 255, 1), rgba(235, 252, 255, 0.9));
         }
 
         /* ===== MD3 按钮样式 ===== */
@@ -601,7 +618,7 @@
             <div class="card-content">
                 <h3 class="card-title">外卖平台后端架构设计</h3>
                 <div class="card-meta">
-                    <span><i class="far fa-user"></i> 林鹏</span>
+                    <span><i class="far fa-user"></i> 林宇鹏</span>
                     <span><i class="far fa-clock"></i> 2024-12-05</span>
                     <span class="tag"><i class="far fa-folder"></i> 后端</span>
                     <span class="tag">Redis</span>
