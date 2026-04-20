@@ -1,7 +1,7 @@
 {
   "version": "1.0.0",
-  "lastScanned": 1776156570687,
-  "projectRoot": "D:\\Project\\NotionNext-main",
+  "lastScanned": 1776340038254,
+  "projectRoot": "d:\\Project\\NotionNext-main",
   "techStack": {
     "languages": [
       {
@@ -122,7 +122,7 @@
       "path": "components",
       "purpose": "UI components",
       "fileCount": 92,
-      "lastAccessed": 1776156570648,
+      "lastAccessed": 1776340038217,
       "keyFiles": [
         "Accessibility.js",
         "Ackee.js",
@@ -135,7 +135,7 @@
       "path": "conf",
       "purpose": null,
       "fileCount": 17,
-      "lastAccessed": 1776156570654,
+      "lastAccessed": 1776340038218,
       "keyFiles": [
         "ad.config.js",
         "ai.confg.js",
@@ -148,7 +148,7 @@
       "path": "docs",
       "purpose": "Documentation",
       "fileCount": 4,
-      "lastAccessed": 1776156570654,
+      "lastAccessed": 1776340038227,
       "keyFiles": [
         "theme-fukasawa.png",
         "theme-hexo.png",
@@ -160,7 +160,7 @@
       "path": "hooks",
       "purpose": null,
       "fileCount": 2,
-      "lastAccessed": 1776156570655,
+      "lastAccessed": 1776340038227,
       "keyFiles": [
         "useAdjustStyle.js",
         "useWindowSize.ts"
@@ -170,7 +170,7 @@
       "path": "lib",
       "purpose": "Library code",
       "fileCount": 2,
-      "lastAccessed": 1776156570655,
+      "lastAccessed": 1776340038227,
       "keyFiles": [
         "config.js",
         "global.js"
@@ -180,7 +180,7 @@
       "path": "pages",
       "purpose": "Page components",
       "fileCount": 7,
-      "lastAccessed": 1776156570655,
+      "lastAccessed": 1776340038228,
       "keyFiles": [
         "404.js",
         "500.js",
@@ -193,7 +193,7 @@
       "path": "patches",
       "purpose": null,
       "fileCount": 1,
-      "lastAccessed": 1776156570655,
+      "lastAccessed": 1776340038228,
       "keyFiles": [
         "notion-utils+7.10.0.patch"
       ]
@@ -202,7 +202,7 @@
       "path": "public",
       "purpose": "Public files",
       "fileCount": 11,
-      "lastAccessed": 1776156570656,
+      "lastAccessed": 1776340038228,
       "keyFiles": [
         "ads.txt",
         "avatar.png",
@@ -215,7 +215,7 @@
       "path": "scripts",
       "purpose": "Build/utility scripts",
       "fileCount": 5,
-      "lastAccessed": 1776156570656,
+      "lastAccessed": 1776340038228,
       "keyFiles": [
         "dev-tools.js",
         "final-validation.js",
@@ -228,7 +228,7 @@
       "path": "styles",
       "purpose": null,
       "fileCount": 4,
-      "lastAccessed": 1776156570656,
+      "lastAccessed": 1776340038229,
       "keyFiles": [
         "globals.css",
         "notion.css",
@@ -240,7 +240,7 @@
       "path": "themes",
       "purpose": null,
       "fileCount": 1,
-      "lastAccessed": 1776156570656,
+      "lastAccessed": 1776340038229,
       "keyFiles": [
         "theme.js"
       ]
@@ -249,7 +249,7 @@
       "path": "types",
       "purpose": "Type definitions",
       "fileCount": 1,
-      "lastAccessed": 1776156570657,
+      "lastAccessed": 1776340038229,
       "keyFiles": [
         "index.ts"
       ]
@@ -258,14 +258,14 @@
       "path": "__tests__",
       "purpose": "Test files",
       "fileCount": 0,
-      "lastAccessed": 1776156570657,
+      "lastAccessed": 1776340038229,
       "keyFiles": []
     },
     "lib\\build": {
       "path": "lib\\build",
       "purpose": "Build output",
       "fileCount": 2,
-      "lastAccessed": 1776156570659,
+      "lastAccessed": 1776340038230,
       "keyFiles": [
         "prefetch.js",
         "staticPaths.js"
@@ -275,7 +275,7 @@
       "path": "lib\\config",
       "purpose": "Configuration files",
       "fileCount": 1,
-      "lastAccessed": 1776156570659,
+      "lastAccessed": 1776340038230,
       "keyFiles": [
         "env-validation.js"
       ]
@@ -284,7 +284,7 @@
       "path": "lib\\middleware",
       "purpose": "Middleware",
       "fileCount": 1,
-      "lastAccessed": 1776156570660,
+      "lastAccessed": 1776340038230,
       "keyFiles": [
         "security.js"
       ]
@@ -293,7 +293,7 @@
       "path": "pages\\api",
       "purpose": "API routes",
       "fileCount": 3,
-      "lastAccessed": 1776156570660,
+      "lastAccessed": 1776340038230,
       "keyFiles": [
         "cache.js",
         "subscribe.js",
@@ -304,7 +304,7 @@
       "path": "__tests__\\components",
       "purpose": "UI components",
       "fileCount": 1,
-      "lastAccessed": 1776156570661,
+      "lastAccessed": 1776340038231,
       "keyFiles": [
         "LazyImage.test.js"
       ]
@@ -313,7 +313,7 @@
       "path": "__tests__\\lib",
       "purpose": "Library code",
       "fileCount": 0,
-      "lastAccessed": 1776156570661,
+      "lastAccessed": 1776340038231,
       "keyFiles": []
     }
   },

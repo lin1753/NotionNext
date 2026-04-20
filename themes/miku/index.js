@@ -9,7 +9,7 @@ import { Transition } from '@headlessui/react'
 import dynamic from 'next/dynamic'
 import SmartLink from '@/components/SmartLink'
 import { useRouter } from 'next/router'
-import { createContext, useContext, useEffect, useRef } from 'react'
+import { createContext, useContext, useEffect, useRef, useState } from 'react'
 import ArticleAdjacent from './components/ArticleAdjacent'
 import ArticleCopyright from './components/ArticleCopyright'
 import { ArticleLock } from './components/ArticleLock'
@@ -17,6 +17,7 @@ import ArticleRecommend from './components/ArticleRecommend'
 import BlogPostArchive from './components/BlogPostArchive'
 import BlogPostListPage from './components/BlogPostListPage'
 import BlogPostListScroll from './components/BlogPostListScroll'
+import RightSidebar from './components/RightSidebar'
 import ButtonJumpToComment from './components/ButtonJumpToComment'
 import ButtonRandomPostMini from './components/ButtonRandomPostMini'
 import Card from './components/Card'
@@ -53,6 +54,17 @@ const LayoutBase = props => {
   const { onLoading, fullWidth } = useGlobal()
   const router = useRouter()
   const showRandomButton = siteConfig('HEXO_MENU_RANDOM', false, CONFIG)
+
+  const [stats, setStats] = useState({ PERFECT: 0, GREAT: 0, MIKU: 0, FEVER: 0, TOTAL: 0 })
+
+  useEffect(() => {
+    const saved = localStorage.getItem('miku_rhythm_stats')
+    if (saved) {
+      try {
+        setStats(JSON.parse(saved))
+      } catch (e) {}
+    }
+  }, [])
 
   const headerSlot = post ? (
     <PostHero {...props} />
@@ -142,6 +154,9 @@ const LayoutBase = props => {
 
     // 音游风格点击反馈特效 (如世界计划 / Bang Dream!)
     const handleClick = (e) => {
+      // 避免重复触发特效和计数的特定元素，比如点击侧边栏的计数器时不重复计分
+      if (document.activeElement && document.activeElement.tagName === 'INPUT') return
+
       const hitTypes = [
         { text: 'PERFECT', color: '#FFD700', shadow: '#FFA500' }, 
         { text: 'GREAT', color: '#00FA9A', shadow: '#32CD32' },   
@@ -149,6 +164,12 @@ const LayoutBase = props => {
         { text: 'FEVER', color: '#FF69B4', shadow: '#FF1493' }     
       ];
       const hit = hitTypes[Math.floor(Math.random() * hitTypes.length)];
+
+      setStats(prev => {
+        const nextStats = { ...prev, [hit.text]: prev[hit.text] + 1, TOTAL: prev.TOTAL + 1 }
+        localStorage.setItem('miku_rhythm_stats', JSON.stringify(nextStats))
+        return nextStats
+      })
 
       // 1. 扩散光圈
       const ring = document.createElement('div');
@@ -241,7 +262,7 @@ const LayoutBase = props => {
   }, [])
 
   return (
-    <ThemeGlobalMiku.Provider value={{ searchModal }}>
+    <ThemeGlobalMiku.Provider value={{ searchModal, stats, setStats }}>
       <div
         id='theme-miku'
         className={`${siteConfig('FONT_STYLE')} dark:bg-black scroll-smooth`}>
@@ -294,6 +315,13 @@ const LayoutBase = props => {
                 {children}
               </Transition>
             </div>
+
+            {/* 新增的右侧悬浮统计边栏 */}
+            {!fullWidth && (
+              <div className='hidden lg:block w-80 shrink-0 sticky top-24 h-max'>
+                <RightSidebar {...props} />
+              </div>
+            )}
           </div>
         </main>
 

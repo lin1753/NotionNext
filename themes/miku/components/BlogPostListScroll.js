@@ -67,14 +67,16 @@ const BlogPostListScroll = ({
     return (
       <div id='container' ref={targetRef} className='w-full'>
         {/* 文章列表 */}
-        <div className='space-y-6 px-2'>
-          {postsToShow.map(post => (
-            <BlogPostCard
-              key={post.id}
-              post={post}
-              showSummary={showSummary}
-              siteInfo={siteInfo}
-            />
+        <div className='grid grid-cols-1 md:grid-cols-2 gap-6 px-2'>
+          {postsToShow.map((post, index) => (
+            <div key={post.id} className={`${index === 0 ? 'md:col-span-2' : 'col-span-1'}`}>
+              <BlogPostCard
+                post={post}
+                showSummary={showSummary}
+                siteInfo={siteInfo}
+                isFeatured={index === 0}
+              />
+            </div>
           ))}
         </div>
 
